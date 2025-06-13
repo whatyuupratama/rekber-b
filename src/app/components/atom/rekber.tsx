@@ -2,11 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 
 interface RekberProps {
-  name: React.ReactNode;
   className?: string;
 }
 
-const Rekber: React.FC<RekberProps> = ({ name, className }) => {
+const Rekber: React.FC<RekberProps> = ({ className }) => {
   return (
     <div className={`flex items-center space-x-2 ${className ?? ''}`}> 
       <Image
