@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface RekberProps {
   name: React.ReactNode;
@@ -7,12 +8,14 @@ interface RekberProps {
 
 const Rekber: React.FC<RekberProps> = ({ name, className }) => {
   return (
-    <div className={`flex items-center space-x-2 ${className ?? ''}`}>
-      <div className={`flex space-x-1 `}>
-        <div className='h-3 w-3 rounded-full bg-blue-500'></div>
-        <div className='ml-1 h-3 w-3 rounded-full bg-red-500'></div>
-      </div>
-      <span className='text-xl font-bold text-gray-900'>{name}</span>
+    <div className={`flex items-center space-x-2 ${className ?? ''}`}> 
+      <Image
+        src="/images/Logo 1.png"
+        alt="Logo"
+        width={120}
+        height={50}
+        className='pb-5'
+      />
     </div>
   );
 };

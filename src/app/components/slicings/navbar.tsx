@@ -42,7 +42,7 @@ function NavBar() {
           <div className='hidden sm:flex w-auto justify-end'>
             <Link
               href='/auth/login'
-              className='py-1 px-6 text-blue-950 flex items-center justify-center rounded-2xl bg-blue-100  font-semibold shadow transition-all duration-200 focus:ring-blue-300 text-[1rem]'
+              className='py-1 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 text-[1rem]'
               onClick={() => setOpen(false)}
             >
               Login

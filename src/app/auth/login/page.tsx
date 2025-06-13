@@ -46,10 +46,10 @@ export default function Login() {
           {/* Welcome Text */}
           <div className='mb-8'>
             <h2 className='text-3xl font-bold text-gray-900'>
-              Selamat Datang Kembali
+              Selamat Datang
             </h2>
             <p className='mt-2 text-gray-600'>
-              Masuk ke akun Anda untuk mengelola transaksi dengan aman
+              Masuk ke akun Anda untuk transaksi dengan aman
             </p>
           </div>
 
