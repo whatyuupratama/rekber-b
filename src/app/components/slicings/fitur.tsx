@@ -20,7 +20,6 @@ export default function Features() {
   const [barData, setBarData] = useState<number[]>([30, 60, 45, 80]);
   const [trend, setTrend] = useState(15);
 
-  // Animate chart data
   useEffect(() => {
     const interval = setInterval(() => {
       setChartData((prev) => {
@@ -36,7 +35,7 @@ export default function Features() {
       ]);
 
       setBarData((prev) => prev.map(() => Math.floor(Math.random() * 60) + 30));
-      setTrend(Math.floor(Math.random() * 20) + 10); // Tambah ini
+      setTrend(Math.floor(Math.random() * 20) + 10);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -56,10 +55,8 @@ export default function Features() {
         </div>
 
         <div className='flex flex-col lg:flex-row items-start gap-8'>
-          {/* Left side - Features */}
           <div className='w-full lg:w-1/2'>
             <div className='space-y-6'>
-              {/* Feature 1 */}
               <div className='flex items-start gap-3 group'>
                 <div className='flex-shrink-0'>
                   <div className='w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center'>
@@ -76,8 +73,6 @@ export default function Features() {
                   </p>
                 </div>
               </div>
-
-              {/* Feature 2 */}
               <div className='flex items-start gap-3 group'>
                 <div className='flex-shrink-0'>
                   <div className='w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center'>
@@ -93,8 +88,6 @@ export default function Features() {
                   </p>
                 </div>
               </div>
-
-              {/* Feature 3 */}
               <div className='flex items-start gap-3 group'>
                 <div className='flex-shrink-0'>
                   <div className='w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center'>
@@ -111,8 +104,6 @@ export default function Features() {
                   </p>
                 </div>
               </div>
-
-              {/* Feature 4 */}
               <div className='flex items-start gap-3 group'>
                 <div className='flex-shrink-0'>
                   <div className='w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center'>
@@ -131,11 +122,8 @@ export default function Features() {
               </div>
             </div>
           </div>
-
-          {/* Right side - Analytics Dashboard */}
           <div className='w-full lg:w-1/2'>
             <div className='bg-white border border-slate-100 rounded-lg p-3'>
-              {/* Dashboard Header */}
               <div className='flex justify-between items-center mb-3'>
                 <div>
                   <h3 className='text-sm font-medium text-slate-800'>
@@ -149,9 +137,7 @@ export default function Features() {
                   <div className='w-1.5 h-1.5 rounded-full bg-green-400'></div>
                 </div>
               </div>
-
               <div className='grid grid-cols-2 gap-2'>
-                {/* Line Chart */}
                 <div className='col-span-2 border border-slate-50 p-2 rounded-md bg-slate-50/50'>
                   <div className='flex justify-between items-center mb-2'>
                     <div className='flex items-center'>
@@ -176,8 +162,6 @@ export default function Features() {
                     ))}
                   </div>
                 </div>
-
-                {/* Pie Chart */}
                 <div className='border border-slate-50 p-2 rounded-md bg-slate-50/50'>
                   <div className='flex items-center mb-1'>
                     <PieChart className='h-3 w-3 text-blue-500 mr-1' />
@@ -217,8 +201,6 @@ export default function Features() {
                     </div>
                   </div>
                 </div>
-
-                {/* Bar Chart */}
                 <div className='border border-slate-50 p-2 rounded-md bg-slate-50/50'>
                   <div className='flex items-center mb-1'>
                     <BarChart2 className='h-3 w-3 text-blue-500 mr-1' />
@@ -248,8 +230,6 @@ export default function Features() {
             </div>
           </div>
         </div>
-
-        {/* CTA Section */}
         <div className='mt-10 text-center'>
           <button className='bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm py-2 px-5 rounded-md transition-colors'>
             Yuk, Transaksi Lebih Seru!

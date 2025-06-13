@@ -40,7 +40,6 @@ export default function HowItWorks() {
     },
   ];
 
-  // Auto-cycle through steps
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev === steps.length - 1 ? 0 : prev + 1));
@@ -48,13 +47,11 @@ export default function HowItWorks() {
     return () => clearInterval(interval);
   }, [steps.length]);
 
-  // Calculate progress percentage based on active step
   const progressPercentage = ((activeStep + 1) / steps.length) * 100;
 
   return (
     <section className='py-16 px-4 bg-white'>
       <div className='max-w-6xl mx-auto'>
-        {/* Header */}
         <div className='text-center mb-16'>
           <h2 className='text-5xl font-bold text-gray-900 mb-4'>
             Proses <span className='text-blue-600'>Rekber</span>
@@ -65,28 +62,20 @@ export default function HowItWorks() {
             aman, nyaman, dan terlindungi.
           </p>
         </div>
-
-        {/* Desktop Process Flow */}
         <div className='hidden md:block relative'>
-          {/* Background Gray Line */}
           <div className='absolute top-24 left-0 w-full h-2 bg-gray-200 z-0 rounded-full'></div>
-
-          {/* Animated Blue Progress Line */}
           <motion.div
             initial={{ width: '0%' }}
             animate={{ width: `${progressPercentage}%` }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
             className='absolute top-24 left-0 h-2 bg-blue-500 z-10 rounded-full'
           ></motion.div>
-
-          {/* Steps */}
           <div className='flex justify-between relative z-20 px-6'>
             {steps.map((step, index) => (
               <div
                 key={step.number}
                 className='flex flex-col items-center w-64'
               >
-                {/* Step Circle with Icon */}
                 <motion.div
                   animate={
                     activeStep === index
@@ -113,8 +102,6 @@ export default function HowItWorks() {
                 >
                   <step.icon size={28} />
                 </motion.div>
-
-                {/* Step Number */}
                 <div
                   className={`w-8 h-8 rounded-full mt-2 mb-3 flex items-center justify-center text-base font-medium ${
                     index <= activeStep
@@ -124,8 +111,6 @@ export default function HowItWorks() {
                 >
                   {step.number}
                 </div>
-
-                {/* Step Title */}
                 <p
                   className={`text-lg font-medium ${
                     index <= activeStep ? 'text-blue-900' : 'text-gray-500'
@@ -137,8 +122,6 @@ export default function HowItWorks() {
             ))}
           </div>
         </div>
-
-        {/* Mobile Process Flow */}
         <div className='md:hidden space-y-8'>
           {steps.map((step, index) => (
             <div

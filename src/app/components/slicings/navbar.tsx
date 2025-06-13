@@ -4,14 +4,14 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Rekber from '@/app/components/atom/rekber';
-function NavBar() {
+
+function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className='max-w-6xl mx-auto py-12 px-4 relative'>
       <div className='flex items-center justify-between'>
         <Rekber className='space-x-1 font-bold' />
-        {/* Desktop Menu */}
         <div className='hidden lg:flex w-auto space-x-[3.75rem]'>
           <Link
             href='/'
@@ -58,8 +58,6 @@ function NavBar() {
             </Link>
           </div>
         </div>
-
-        {/* Mobile Hamburger */}
         <div className='flex lg:hidden'>
           <button
             type='button'
@@ -75,7 +73,6 @@ function NavBar() {
           </button>
         </div>
       </div>
-      {/* Mobile Dropdown - absolute, tidak mendorong section hero */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -134,4 +131,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Navbar;

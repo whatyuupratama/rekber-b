@@ -20,7 +20,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import Rekber from '@/app/components/atom/rekber';
-/*******  b5236523-4e4a-407a-b51e-e3a1eb00f1d6  *******/ export default function Register() {
+
+export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -30,8 +31,6 @@ import Rekber from '@/app/components/atom/rekber';
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-
-    // Simulate registration process
     setTimeout(() => {
       setIsLoading(false);
       router.push('/login');
@@ -40,13 +39,9 @@ import Rekber from '@/app/components/atom/rekber';
 
   return (
     <div className='flex min-h-screen'>
-      {/* Left Side - Register Form */}
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>
         <div className='mx-auto w-full max-w-md'>
-          {/* Logo */}
-          <Rekber className='space-x-1 font-bold' />
-
-          {/* Welcome Text */}
+          <Rekber className='space-x-1 font-bold pb-2' />
           <div className='mb-8'>
             <h2 className='text-3xl font-bold text-gray-900'>
               Bergabung dengan Rekber
@@ -56,8 +51,6 @@ import Rekber from '@/app/components/atom/rekber';
               pengguna lainnya
             </p>
           </div>
-
-          {/* Register Form */}
           <form onSubmit={handleSubmit} className='space-y-5'>
             <div className='grid grid-cols-2 gap-4'>
               <div>
@@ -91,7 +84,6 @@ import Rekber from '@/app/components/atom/rekber';
                 />
               </div>
             </div>
-
             <div>
               <Label
                 htmlFor='email'
@@ -107,7 +99,6 @@ import Rekber from '@/app/components/atom/rekber';
                 className='mt-1 h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500'
               />
             </div>
-
             <div>
               <Label
                 htmlFor='phone'
@@ -123,7 +114,6 @@ import Rekber from '@/app/components/atom/rekber';
                 className='mt-1 h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500'
               />
             </div>
-
             <div>
               <Label
                 htmlFor='password'
@@ -148,7 +138,6 @@ import Rekber from '@/app/components/atom/rekber';
                 </button>
               </div>
             </div>
-
             <div>
               <Label
                 htmlFor='confirmPassword'
@@ -177,7 +166,6 @@ import Rekber from '@/app/components/atom/rekber';
                 </button>
               </div>
             </div>
-
             <div className='flex items-start space-x-2'>
               <Checkbox
                 id='terms'
@@ -198,7 +186,6 @@ import Rekber from '@/app/components/atom/rekber';
                 </a>
               </label>
             </div>
-
             <Button
               type='submit'
               className='h-12 w-full bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-200'
@@ -235,8 +222,6 @@ import Rekber from '@/app/components/atom/rekber';
               )}
             </Button>
           </form>
-
-          {/* Divider */}
           <div className='my-6'>
             <div className='relative'>
               <div className='absolute inset-0 flex items-center'>
@@ -247,8 +232,6 @@ import Rekber from '@/app/components/atom/rekber';
               </div>
             </div>
           </div>
-
-          {/* Login Link */}
           <p className='text-center text-sm text-gray-600'>
             Sudah punya akun?{' '}
             <a
@@ -260,56 +243,41 @@ import Rekber from '@/app/components/atom/rekber';
           </p>
         </div>
       </div>
-
-      {/* Right Side - Animated Rekber Journey */}
       <div className='hidden lg:flex lg:w-1/2 lg:flex-col lg:justify-center lg:bg-gradient-to-br lg:from-blue-900 lg:via-blue-800 lg:to-blue-700 lg:px-12 lg:relative lg:overflow-hidden'>
-        {/* Background Animation Elements */}
         <div className='absolute inset-0 overflow-hidden'>
           <div className='absolute top-10 right-20 w-40 h-40 bg-blue-400/10 rounded-full animate-pulse delay-1000'></div>
           <div className='absolute bottom-32 left-16 w-28 h-28 bg-blue-300/10 rounded-full animate-bounce delay-500'></div>
           <div className='absolute top-1/3 right-1/4 w-20 h-20 bg-blue-500/10 rounded-full animate-ping delay-700'></div>
         </div>
-
         <div className='text-white relative z-10'>
-          {/* Animated Journey Steps */}
           <div className='mb-12 text-center'>
             <div className='mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/20 mx-auto animate-pulse'>
               <UserPlus size={40} className='text-blue-300' />
             </div>
-
             <h3 className='text-4xl font-bold mb-4'>Mulai Perjalanan Anda</h3>
             <p className='text-xl text-blue-100'>
               Bergabung dengan ekosistem transaksi aman terbesar
             </p>
           </div>
-
-          {/* Animated Process Flow */}
           <div className='mb-12'>
             <div className='flex items-center justify-center space-x-4 mb-8'>
-              {/* Step 1 */}
               <div className='flex flex-col items-center animate-bounce'>
                 <div className='w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-2'>
                   <span className='text-white font-bold'>1</span>
                 </div>
                 <span className='text-xs text-blue-200'>Daftar</span>
               </div>
-
               <ArrowRight className='text-blue-400 animate-pulse' size={20} />
-
-              {/* Step 2 */}
               <div className='flex flex-col items-center animate-bounce delay-300'>
                 <div className='w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-2'>
                   <DollarSign size={20} className='text-white' />
                 </div>
                 <span className='text-xs text-blue-200'>Transaksi</span>
               </div>
-
               <ArrowRight
                 className='text-blue-400 animate-pulse delay-200'
                 size={20}
               />
-
-              {/* Step 3 */}
               <div className='flex flex-col items-center animate-bounce delay-500'>
                 <div className='w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mb-2'>
                   <Package size={20} className='text-white' />
@@ -318,8 +286,6 @@ import Rekber from '@/app/components/atom/rekber';
               </div>
             </div>
           </div>
-
-          {/* Animated Benefits */}
           <div className='space-y-6'>
             <div className='flex items-start space-x-4 transform hover:scale-105 transition-transform duration-300'>
               <div className='flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 animate-pulse'>
@@ -332,7 +298,6 @@ import Rekber from '@/app/components/atom/rekber';
                 </p>
               </div>
             </div>
-
             <div className='flex items-start space-x-4 transform hover:scale-105 transition-transform duration-300 delay-100'>
               <div className='flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 animate-pulse delay-200'>
                 <Zap size={16} className='text-white' />
@@ -344,7 +309,6 @@ import Rekber from '@/app/components/atom/rekber';
                 </p>
               </div>
             </div>
-
             <div className='flex items-start space-x-4 transform hover:scale-105 transition-transform duration-300 delay-200'>
               <div className='flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 animate-pulse delay-400'>
                 <Users size={16} className='text-white' />
@@ -356,7 +320,6 @@ import Rekber from '@/app/components/atom/rekber';
                 </p>
               </div>
             </div>
-
             <div className='flex items-start space-x-4 transform hover:scale-105 transition-transform duration-300 delay-300'>
               <div className='flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 animate-pulse delay-600'>
                 <Award size={16} className='text-white' />
@@ -367,8 +330,6 @@ import Rekber from '@/app/components/atom/rekber';
               </div>
             </div>
           </div>
-
-          {/* Animated Growth Stats */}
           <div className='mt-12 grid grid-cols-3 gap-8 border-t border-blue-700 pt-8'>
             <div className='text-center transform hover:scale-110 transition-transform duration-300'>
               <div className='text-2xl font-bold animate-pulse'>10K+</div>
@@ -387,8 +348,6 @@ import Rekber from '@/app/components/atom/rekber';
               <div className='text-sm text-blue-200'>Success Rate</div>
             </div>
           </div>
-
-          {/* Floating Success Animation */}
           <div className='absolute top-20 right-10'>
             <div className='relative'>
               <div className='w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center animate-ping'>
@@ -397,8 +356,6 @@ import Rekber from '@/app/components/atom/rekber';
               <div className='absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full animate-bounce delay-300'></div>
             </div>
           </div>
-
-          {/* Floating Money Animation */}
           <div className='absolute bottom-20 left-10'>
             <div className='relative'>
               <div className='w-10 h-10 bg-yellow-500/20 rounded-full flex items-center justify-center animate-pulse'>
