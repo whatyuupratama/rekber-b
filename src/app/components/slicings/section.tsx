@@ -2,35 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import {
-  BarChart3,
-  Check,
   ChevronDown,
   TrendingUp,
-  Shield,
   Zap,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default function RekberLanding() {
-  //   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [animatedValue, setAnimatedValue] = useState<number>(1000000);
+  // const [animatedValue, setAnimatedValue] = useState<number>(1000000);
   const [chartData, setChartData] = useState<number[]>([
     60, 80, 45, 90, 70, 55,
   ]);
 
   // Animate transaction value
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimatedValue((prev) => {
-        const change = (Math.random() - 0.5) * 100000;
-        const newValue = Math.max(500000, Math.min(2000000, prev + change));
-        return Math.round(newValue / 10000) * 10000;
-      });
-    }, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setAnimatedValue((prev) => {
+  //       const change = (Math.random() - 0.5) * 100000;
+  //       const newValue = Math.max(500000, Math.min(2000000, prev + change));
+  //       return Math.round(newValue / 10000) * 10000;
+  //     });
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // Animate chart data
   useEffect(() => {
@@ -41,9 +37,9 @@ export default function RekberLanding() {
     return () => clearInterval(interval);
   }, []);
 
-  const formatCurrency = (value: number): string => {
-    return new Intl.NumberFormat('id-ID').format(value);
-  };
+  // const formatCurrency = (value: number): string => {
+  //   return new Intl.NumberFormat('id-ID').format(value);
+  // };
 
   return (
     <div className='min-h-screen overflow-hidden'>

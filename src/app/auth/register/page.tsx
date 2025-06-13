@@ -44,7 +44,7 @@ import Rekber from '@/app/components/atom/rekber';
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>
         <div className='mx-auto w-full max-w-md'>
           {/* Logo */}
-          <Rekber name='Rekber' className='space-x-1 font-bold' />
+          <Rekber className='space-x-1 font-bold' />
 
           {/* Welcome Text */}
           <div className='mb-8'>

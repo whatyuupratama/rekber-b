@@ -10,7 +10,7 @@ function NavBar() {
   return (
     <div className='max-w-6xl mx-auto py-12 px-4 relative'>
       <div className='flex items-center justify-between'>
-        <Rekber name='Rekber' className='space-x-1 font-bold' />
+        <Rekber className='space-x-1 font-bold' />
         {/* Desktop Menu */}
         <div className='hidden lg:flex w-auto space-x-[3.75rem]'>
           <Link
