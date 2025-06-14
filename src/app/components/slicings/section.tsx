@@ -20,16 +20,18 @@ export default function RekberLanding() {
 
   return (
     <div className='overflow-hidden'>
-      <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12'>
+      <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  lg:py-12'>
         <div className='grid lg:grid-cols-2 gap-8 lg:gap-16 items-start'>
-          <div className='pt-4 lg:pt-8 space-y-6'>
+          <div className='lg:pt-8 space-y-6'>
             <h3 className='text-4xl lg:text-6xl font-bold text-gray-900 leading-tight'>
-            Transaksi Aman & Mudah
-            <br />
+              Transaksi Aman & Mudah
+              <br />
               <span className='text-blue-600'>Dengan Rekber.com</span>
             </h3>
             <p className='text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg'>
-            Rekber.com adalah solusi transaksi online terpercaya dengan sistem rekening bersama (escrow) untuk keamanan maksimal bagi pembeli dan penjual
+              Rekber.com adalah solusi transaksi online terpercaya dengan sistem
+              rekening bersama (escrow) untuk keamanan maksimal bagi pembeli dan
+              penjual
             </p>
             <Button
               size='lg'
@@ -76,14 +78,14 @@ export default function RekberLanding() {
                   </p>
                 </div>
                 <div className='space-y-3'>
-                  <div className='space-y-2'> 
+                  <div className='space-y-2'>
                     <div className='relative'>
                       <select
                         className='w-full h-10 px-3 text-sm rounded-xl border border-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
                         defaultValue=''
-                      >  
+                      >
                         <option value='jual-beli'>Saya Penjual</option>
-                        <option value='investasi'>Saya Pembeli</option> 
+                        <option value='investasi'>Saya Pembeli</option>
                       </select>
                       <div className='absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none'>
                         <ChevronDown className='w-4 h-4 text-gray-400' />
@@ -95,13 +97,13 @@ export default function RekberLanding() {
                       Nominal
                     </label>
                     <div className='relative'>
-                    <input
-                          type="text"
-                          id="nominal"
-                          name="nominal"
-                          placeholder="Masukkan nominal" 
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        /> 
+                      <input
+                        type='text'
+                        id='nominal'
+                        name='nominal'
+                        placeholder='Masukkan nominal'
+                        className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+                      />
                     </div>
                   </div>
                   <div className='space-y-2'>
