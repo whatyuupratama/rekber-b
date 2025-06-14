@@ -19,17 +19,17 @@ export default function RekberLanding() {
   }, []);
 
   return (
-    <div className='min-h-screen overflow-hidden'>
+    <div className='overflow-hidden'>
       <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12'>
         <div className='grid lg:grid-cols-2 gap-8 lg:gap-16 items-start'>
-          <div className='pt-8 lg:pt-16 space-y-6'>
-            <h1 className='text-4xl lg:text-6xl font-bold text-gray-900 leading-tight'>
-              Kelola Transaksi <br />
-              <span className='text-blue-600'>Seperti Ahli</span>
-            </h1>
+          <div className='pt-4 lg:pt-8 space-y-6'>
+            <h3 className='text-4xl lg:text-6xl font-bold text-gray-900 leading-tight'>
+            Transaksi Aman & Mudah
+            <br />
+              <span className='text-blue-600'>Dengan Rekber.com</span>
+            </h3>
             <p className='text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg'>
-              Rekber membantu Anda mengatur transaksi online tanpa memerlukan
-              keahlian keuangan atau pengetahuan sebelumnya
+            Rekber.com adalah solusi transaksi online terpercaya dengan sistem rekening bersama (escrow) untuk keamanan maksimal bagi pembeli dan penjual
             </p>
             <Button
               size='lg'
@@ -68,7 +68,7 @@ export default function RekberLanding() {
                   <div className='flex items-center space-x-2'>
                     <Zap className='w-5 h-5 text-blue-600' />
                     <h3 className='text-xl lg:text-2xl font-bold text-gray-900'>
-                      Rekening Bersama
+                      Buat Rekening Bersama
                     </h3>
                   </div>
                   <p className='text-gray-600 text-sm'>
@@ -76,6 +76,34 @@ export default function RekberLanding() {
                   </p>
                 </div>
                 <div className='space-y-3'>
+                  <div className='space-y-2'> 
+                    <div className='relative'>
+                      <select
+                        className='w-full h-10 px-3 text-sm rounded-xl border border-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                        defaultValue=''
+                      >  
+                        <option value='jual-beli'>Saya Penjual</option>
+                        <option value='investasi'>Saya Pembeli</option> 
+                      </select>
+                      <div className='absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none'>
+                        <ChevronDown className='w-4 h-4 text-gray-400' />
+                      </div>
+                    </div>
+                  </div>
+                  <div className='space-y-2'>
+                    <label className='text-xs font-medium text-gray-600'>
+                      Nominal
+                    </label>
+                    <div className='relative'>
+                    <input
+                          type="text"
+                          id="nominal"
+                          name="nominal"
+                          placeholder="Masukkan nominal" 
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        /> 
+                    </div>
+                  </div>
                   <div className='space-y-2'>
                     <label className='text-xs font-medium text-gray-600'>
                       Jenis Transaksi
