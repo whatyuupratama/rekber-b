@@ -27,6 +27,11 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const email = e.currentTarget.email.value;
+    const password = e.currentTarget.password.value;
+
+    document.cookie = `email=${email}`;
+    document.cookie = `password=${password}`;
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
