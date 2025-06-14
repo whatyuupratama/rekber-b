@@ -9,7 +9,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className='max-w-6xl mx-auto py-4 px-4 relative'>
+    <div className='max-w-6xl mx-auto py-9 px-4 relative'>
       <div className='flex items-center justify-between'>
         <Rekber className='space-x-1 font-bold' />
         <div className='hidden lg:flex w-auto space-x-[3.75rem]'>
