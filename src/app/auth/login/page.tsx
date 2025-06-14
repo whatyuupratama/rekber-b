@@ -30,7 +30,7 @@ export default function Login() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      router.push('/');
+      router.push('/dashboard');
     }, 1500);
   };
   return (
