@@ -30,10 +30,9 @@ export default function Login() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      router.push('/dashboard');
+      router.push('/');
     }, 1500);
   };
-
   return (
     <div className='flex min-h-screen'>
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>

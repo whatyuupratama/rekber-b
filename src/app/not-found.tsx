@@ -12,8 +12,7 @@ export default function NotFound() {
       </h1>
       <p className='text-gray-500 mb-6 text-center text-sm sm:text-base max-w-md'>
         <span className='font-semibold text-blue-500'>rekber.com</span> masih
-        dalam proses pengembangan, sehingga mungkin belum dapat diakses halaman
-        ini. silakan kembali lagi nanti.
+        dalam proses pengembangan, silakan kembali lagi nanti.
       </p>
       <Link
         href='/'

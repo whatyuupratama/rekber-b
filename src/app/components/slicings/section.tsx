@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { ChevronDown, TrendingUp, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-
+import BtnCustom from '../atom/btnCustom';
 export default function RekberLanding() {
   const [chartData, setChartData] = useState<number[]>([
     60, 80, 45, 90, 70, 55,
@@ -20,27 +20,22 @@ export default function RekberLanding() {
 
   return (
     <div className='overflow-hidden'>
-      <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  lg:py-12'>
-        <div className='grid lg:grid-cols-2 gap-8 lg:gap-16 items-start'>
-          <div className='lg:pt-8 space-y-6'>
-            <h3 className='text-4xl lg:text-6xl font-bold text-gray-900 leading-tight'>
-              Transaksi Aman & Mudah
+      <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-12'>
+        <div className='grid lg:grid-cols-2 gap-10 lg:gap-16 items-start'>
+          <div className='lg:pt-8 space-y-6 text-start lg:text-left'>
+            <h3 className='text-4xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight'>
+              Transaksi Aman & Mudah Dengan{' '}
+              <span className='text-blue-600'>Rekber.com</span>
               <br />
-              <span className='text-blue-600'>Dengan Rekber.com</span>
             </h3>
-            <p className='text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg'>
+            <p className='text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0'>
               Rekber.com adalah solusi transaksi online terpercaya dengan sistem
               rekening bersama (escrow) untuk keamanan maksimal bagi pembeli dan
               penjual
             </p>
-            <Button
-              size='lg'
-              className='bg-blue-600 hover:bg-blue-700 text-white px-6 py-6 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300'
-            >
-              Mulai Sekarang
-            </Button>
+            <BtnCustom href='/auth/register'>Mulai Sekarang</BtnCustom>
           </div>
-          <div className='relative lg:mt-1 '>
+          <div className='relative mt-8 lg:mt-1 justify-self-center lg:justify-self-end w-full max-w-xs sm:max-w-sm lg:max-w-sm'>
             <div className='absolute -top-3 md:-top-7 -left-6 md:-left-8 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg flex items-center justify-center transform rotate-12 animate-bounce'>
               <TrendingUp className='w-8 h-8 text-white' />
             </div>
@@ -64,8 +59,8 @@ export default function RekberLanding() {
                 ))}
               </div>
             </div>
-            <Card className='bg-white/90 backdrop-blur-sm  border-0 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-3xl hover:scale-[1.02] max-w-sm mx-auto lg:mx-0'>
-              <CardContent className='p-6 lg:p-8 space-y-6'>
+            <Card className='bg-white/90 backdrop-blur-sm border-0 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-3xl hover:scale-[1.02] w-full max-w-full sm:max-w-sm mx-auto lg:mx-0'>
+              <CardContent className='p-4 sm:p-6 lg:p-8 space-y-6'>
                 <div className='space-y-2'>
                   <div className='flex items-center space-x-2'>
                     <Zap className='w-5 h-5 text-blue-600' />
