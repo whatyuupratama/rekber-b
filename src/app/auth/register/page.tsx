@@ -33,7 +33,7 @@ export default function Register() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      router.push('/login');
+      router.push('/auth/login');
     }, 2000);
   };
 
