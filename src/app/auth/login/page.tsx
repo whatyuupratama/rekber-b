@@ -36,8 +36,10 @@ export default function Login() {
       return;
     }
     setShowAlert(false);
-    const words = password.split(' ').slice(0, 24).join(' ');
-    const hashedPassword = CryptoJS.SHA256(words).toString(CryptoJS.enc.Hex);
+    const splittedPassword = password.split(' ').slice(0, 24).join(' ');
+    const hashedPassword = CryptoJS.SHA256(splittedPassword).toString(
+      CryptoJS.enc.Hex
+    );
     document.cookie = `email=${email}`;
     document.cookie = `password=${hashedPassword}`;
     setIsLoading(true);
