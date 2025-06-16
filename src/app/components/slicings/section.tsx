@@ -5,7 +5,11 @@ import { ChevronDown, TrendingUp, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import BtnCustom from '../atom/btnCustom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 export default function RekberLanding() {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const [chartData, setChartData] = useState<number[]>([
     60, 80, 45, 90, 70, 55,
   ]);
@@ -18,6 +22,14 @@ export default function RekberLanding() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push('/dashboard/detail-transaksi');
+    }, 1500);
+  };
   return (
     <div className='overflow-hidden'>
       <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-12'>
@@ -72,13 +84,21 @@ export default function RekberLanding() {
                     Transaksi aman & mudah
                   </p>
                 </div>
-                <div className='space-y-3'>
+
+                {/* ✅ FORM START */}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault() 
+                    router.push('/dashboard/detail-transaksi');
+                  }}
+                  className='space-y-3'
+                > 
                   <div className='space-y-2'>
                     <div className='relative'>
-                      <select
+                      <select 
                         className='w-full h-10 px-3 text-sm rounded-xl border border-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
-                        defaultValue=''
                       >
+                        <option value='' disabled>Pilih peran</option>
                         <option value='jual-beli'>Saya Penjual</option>
                         <option value='investasi'>Saya Pembeli</option>
                       </select>
@@ -87,32 +107,33 @@ export default function RekberLanding() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Input Nominal */}
                   <div className='space-y-2'>
                     <label className='text-xs font-medium text-gray-600'>
                       Nominal
                     </label>
                     <div className='relative'>
                       <input
-                        type='text'
-                        id='nominal'
-                        name='nominal'
+                        type='number'  
                         placeholder='Masukkan nominal'
                         className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+                        required
                       />
                     </div>
                   </div>
+
+                  {/* Jenis Transaksi */}
                   <div className='space-y-2'>
                     <label className='text-xs font-medium text-gray-600'>
                       Jenis Transaksi
                     </label>
                     <div className='relative'>
-                      <select
+                      <select  
+                        required
                         className='w-full h-10 px-3 text-sm rounded-xl border border-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
-                        defaultValue=''
                       >
-                        <option value='' disabled>
-                          Pilih jenis transaksi
-                        </option>
+                        <option value='' disabled>Pilih jenis transaksi</option>
                         <option value='jual-beli'>Jual Beli Online</option>
                         <option value='investasi'>Investasi Bersama</option>
                         <option value='freelance'>Proyek Freelance</option>
@@ -122,10 +143,13 @@ export default function RekberLanding() {
                       </div>
                     </div>
                   </div>
-                  <Button className='w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white h-10 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl'>
+
+                  {/* Tombol Submit */}
+                  <Button type='submit' className='w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white h-10 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl'>
                     Lanjutkan
                   </Button>
-                </div>
+                </form>
+                {/* ✅ FORM END */}
               </CardContent>
             </Card>
             <div className='absolute -bottom-8 -right-8 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg items-center justify-center transform -rotate-12 animate-pulse hidden lg:flex'>
