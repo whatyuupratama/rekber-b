@@ -25,7 +25,7 @@ export default function SimpleCardForm() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Status</p>
-                    <div variant="outline" className="text-orange-600 border-orange-200 bg-orange-50">
+                    <div className="text-orange-600 border-orange-200 bg-orange-50">
                       Menunggu Konfirmasi
                     </div>
                   </div>
@@ -35,7 +35,7 @@ export default function SimpleCardForm() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Biaya Admin</p>
-                    <div variant="secondary" className="bg-blue-50 text-blue-700">
+                    <div   className="bg-blue-50 text-blue-700">
                       Penjual
                     </div>
                   </div>
@@ -65,7 +65,7 @@ export default function SimpleCardForm() {
             </Card>
             <Link href="/">
             <Button
-              variant="outline"
+               
               className="text-red-600 border-red-200 hover:bg-red-50"
             >
               Batalkan Transaksi

@@ -4,11 +4,9 @@ import { useState, useEffect } from 'react';
 import { ChevronDown, TrendingUp, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import BtnCustom from '../atom/btnCustom';
-import Link from 'next/link';
+import BtnCustom from '../atom/btnCustom'; 
 import { useRouter } from 'next/navigation';
-export default function RekberLanding() {
-  const [isLoading, setIsLoading] = useState(false);
+export default function RekberLanding() { 
   const router = useRouter();
   const [chartData, setChartData] = useState<number[]>([
     60, 80, 45, 90, 70, 55,
@@ -21,15 +19,7 @@ export default function RekberLanding() {
 
     return () => clearInterval(interval);
   }, []);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push('/dashboard/detail-transaksi');
-    }, 1500);
-  };
+ 
   return (
     <div className='overflow-hidden'>
       <main className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-12'>
