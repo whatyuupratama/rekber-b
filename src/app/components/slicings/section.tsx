@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import BtnCustom from '../atom/btnCustom'; 
 import { useRouter } from 'next/navigation';
-export default function RekberLanding() {
-  const [ setIsLoading] = useState(false);
+export default function RekberLanding() { 
   const router = useRouter();
   const [chartData, setChartData] = useState<number[]>([
     60, 80, 45, 90, 70, 55,
