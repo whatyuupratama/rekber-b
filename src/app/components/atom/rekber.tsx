@@ -8,7 +8,7 @@ interface RekberProps {
 
 const Rekber: React.FC<RekberProps> = ({ className }) => {
   return (
-    <div className={`flex items-center space-x-2 ${className ?? ''}`}>
+    <div className={`flex justify-center items-center space-x-2 ${className ?? ''}`}>
       <Link href='/'>
         <Image src='/images/Logo 1.png' alt='Logo' width={120} height={120} />
       </Link>
