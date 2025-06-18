@@ -33,10 +33,10 @@ export default function RekberLandingPage() {
 
           <div className="flex items-center space-x-4">
             <Button variant="ghost" className="text-gray-700 hover:text-blue-600 font-medium">
-              Login
+            Register
             </Button>
             <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all">
-              Register
+            Login
             </Button>
           </div>
         </div>
