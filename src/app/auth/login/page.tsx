@@ -54,7 +54,7 @@ export default function Login() {
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>
         <div className='mx-auto w-full max-w-md'>
           <Rekber className='space-x-1 font-bold pb-2' />
-          <div className='mb-8'>
+          <div className='mb-8 pt-10'>
             <h2 className='text-3xl font-bold text-gray-900'>Selamat Datang</h2>
             <p className='mt-2 text-gray-600'>
               Masuk ke akun Anda untuk transaksi dengan aman

@@ -42,7 +42,7 @@ export default function Register() {
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>
         <div className='mx-auto w-full max-w-md'>
           <Rekber className='space-x-1 font-bold pb-2' />
-          <div className='mb-8'>
+          <div className='mb-8 pt-10'>
             <h2 className='text-2xl font-bold text-gray-900'>
               Bergabung dengan Rekber.com
             </h2>
@@ -54,10 +54,25 @@ export default function Register() {
           <form onSubmit={handleSubmit} className='space-y-5'> 
             <div>
               <Label
-                htmlFor='email'
+                htmlFor='name'
                 className='text-sm font-medium text-gray-700'
               >
-                Email Address
+                Nama
+              </Label>
+              <Input
+                id='name'
+                type='tel'
+                placeholder='John'
+                required
+                className='mt-1 h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+              />
+            </div>
+            <div>
+              <Label
+                htmlFor='name'
+                className='text-sm font-medium text-gray-700'
+              >
+                Nama
               </Label>
               <Input
                 id='email'

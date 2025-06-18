@@ -6,11 +6,8 @@ import Fitur from '../slicings/fitur';
 import Works from '../slicings/works';
 const Start = () => {
   return (
-    <div>
-      <NavBar />
-      <Hero />
-      <Fitur />
-      <Works />
+    <div> 
+      <Hero /> 
     </div>
   );
 };
