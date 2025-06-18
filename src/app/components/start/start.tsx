@@ -2,15 +2,17 @@ import React from 'react';
 import NavBar from '../slicings/navbar';
 import Hero from '../slicings/section';
 // import CTA from '../cta';
-import Fitur from '../slicings/fitur';
-import Works from '../slicings/works';
+import Fitur from '../slicings/works';
+import Feature from '../slicings/feature';
+import Footer from '../slicings/footer';
 const Start = () => {
   return (
     <div>
       <NavBar />
       <Hero />
+      <Feature />
       <Fitur />
-      <Works />
+      <Footer />
     </div>
   );
 };
