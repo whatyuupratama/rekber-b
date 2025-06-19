@@ -17,30 +17,24 @@ export default function Navbar() {
         <div className='flex items-center space-x-8'>
           <LogoRekber />
           <div className='hidden md:flex items-center space-x-8'>
-            <a
-              href='#home'
+            <Link
+              href='/'
               className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
             >
               Home
-            </a>
-            <a
-              href='#features'
+            </Link>
+            <Link
+              href='/about'
               className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
             >
               About
-            </a>
-            <a
-              href='#showcase'
+            </Link>
+            <Link
+              href='/contact'
               className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
             >
               Contact
-            </a>
-            <a
-              href='#pricing'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              Term & Condition
-            </a>
+            </Link> 
           </div>
         </div>
         {/* Desktop Auth Buttons */}
@@ -86,48 +80,41 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className='md:hidden absolute left-0 right-0 top-full z-50 bg-white rounded-xl shadow-lg px-6 py-4 space-y-2'
           >
-            <a
-              href='#home'
+            <Link
+              href='/'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
               Home
-            </a>
-            <a
-              href='#features'
+            </Link>
+            <Link
+              href='/about'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
-              Features
-            </a>
-            <a
-              href='#showcase'
+              About
+            </Link>
+            <Link
+              href='/contact'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
-              Showcase
-            </a>
-            <a
-              href='#pricing'
-              className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
-              onClick={() => setOpen(false)}
-            >
-              Pricing
-            </a>
-            <a
+              Contact
+            </Link> 
+            <Link
               href='/auth/login'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
               Login
-            </a>
-            <a
+            </Link>
+            <Link
               href='/auth/register'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
               Registrasi
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

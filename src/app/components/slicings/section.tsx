@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { User, Car, Smartphone } from "lucide-react"
+import Link from 'next/link';
 
 const categories = [
   { icon: User, label: "Akun", color: "text-blue-500" },
@@ -43,7 +44,7 @@ export default function RekberLanding() {
                 <span className="text-gray-900">Penipuan</span>
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Rekber.com jembatan pembayaran antara pembeli & penjual yang terpercaya.
+              <span className="font-semibold text-blue-900">Rekber.com </span> jembatan pembayaran antara pembeli & penjual yang terpercaya.
               </p>
             </div>
  
@@ -74,13 +75,14 @@ export default function RekberLanding() {
                                 rounded-b-lg sm:rounded-r-lg sm:rounded-l-none"
                       style={{ height: 'calc(var(--spacing) * 14)' }}
                     >
-                      <SelectValue placeholder="Akun, kendaraan, gadget..." />
+                       <SelectValue placeholder="Jual Beli Akun" />
                     </SelectTrigger>
-                    <SelectContent> 
-                      <SelectItem value="akun">Jual Beli Akun</SelectItem>
+                    <SelectContent>  
+                      <SelectItem value="jual-beli">Jual Beli Akun</SelectItem> 
                       <SelectItem value="mobil">Kendaraan</SelectItem>
                       <SelectItem value="gadget">Gadget & Elektronik</SelectItem>
                       <SelectItem value="jasa">Jasa & Layanan</SelectItem>
+                      <SelectItem value="properti">Properti</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -119,10 +121,11 @@ export default function RekberLanding() {
                 </div>
               </div>
 
-              {/* Get Started Button */}
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">
-                Mulai sekarang
-              </Button>
+              <Link href='/auth/login'>
+                <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">
+                  Mulai sekarang
+                </Button>
+              </Link>
             </div>
  
           </div>
