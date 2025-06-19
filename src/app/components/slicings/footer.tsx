@@ -1,15 +1,11 @@
+import Rekber from '@/app/components/atom/rekber';
 export default function Footer() {
   return (
     <footer className='bg-gray-900 text-white py-16'>
       <div className='max-w-7xl mx-auto px-6'>
         <div className='grid md:grid-cols-4 gap-8 mb-12'>
           <div className='space-y-4'>
-            <div className='flex items-center space-x-2'>
-              <div className='w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center'>
-                <span className='text-white font-bold text-sm'>R</span>
-              </div>
-              <span className='text-2xl font-bold'>REKBER</span>
-            </div>
+            <Rekber />
             <p className='text-gray-400 leading-relaxed'>
               Platform rekening bersama terpercaya untuk transaksi online yang
               aman dan terjamin.

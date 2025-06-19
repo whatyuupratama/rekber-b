@@ -16,7 +16,6 @@ export default function HeroSection() {
     >
       <div className='max-w-7xl mx-auto px-6'>
         <div className='grid lg:grid-cols-2 gap-16 items-center'>
-          {/* Left Content */}
           <div className='space-y-8'>
             <div className='space-y-6'>
               <h1 className='text-5xl lg:text-6xl font-bold text-gray-900 leading-tight'>
@@ -35,7 +34,6 @@ export default function HeroSection() {
             >
               Mulai Sekarang
             </Button>
-            {/* Trust Indicators */}
             <div className='grid grid-cols-3 gap-8 pt-8'>
               <div className='text-center'>
                 <div className='text-3xl font-bold text-blue-600'>10K+</div>
@@ -51,7 +49,6 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-          {/* Right Form */}
           <div className='flex justify-center lg:justify-end'>
             <div className='w-full max-w-md bg-white border border-gray-200 rounded-xl p-8'>
               <div className='mb-6'>
