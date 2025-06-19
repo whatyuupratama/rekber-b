@@ -27,19 +27,19 @@ export default function Navbar() {
               href='#features'
               className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
             >
-              Features
+              About
             </a>
             <a
               href='#showcase'
               className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
             >
-              Showcase
+              Contact
             </a>
             <a
               href='#pricing'
               className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
             >
-              Pricing
+              Term & Condition
             </a>
           </div>
         </div>
