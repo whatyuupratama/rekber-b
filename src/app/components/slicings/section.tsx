@@ -16,7 +16,6 @@ export default function HeroSection() {
     >
       <div className='max-w-7xl mx-auto px-6'>
         <div className='grid lg:grid-cols-2 gap-16 items-center'>
-          {/* Left Content */}
           <div className='space-y-8'>
             <div className='space-y-6'>
               <h1 className='text-5xl lg:text-6xl font-bold text-gray-900 leading-tight'>
