@@ -30,7 +30,7 @@ export default function RekberLanding() {
   }; 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-blue-50">   
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-6 py-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Section */}
           <div className="space-y-8">
@@ -43,16 +43,18 @@ export default function RekberLanding() {
                 <span className="text-gray-900">Penipuan</span>
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Rekber.com jembatan pembayaran antara pembeli & penjual yang terpercaya
+                Rekber.com jembatan pembayaran antara pembeli & penjual yang terpercaya.
               </p>
             </div>
  
             <div className="space-y-4 max-w-3xl">
-              <div className="grid grid-cols-3 gap-0">
-                <div className="col-span-1">
+              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-3 sm:gap-y-0 gap-x-0">
+                {/* Select 1 */}
+                <div className="sm:col-span-1">
                   <Select defaultValue="penjual">
                     <SelectTrigger
-                      className="bg-white text-gray-800 border border-gray-300 rounded-r-none w-full text-base"
+                      className="bg-white text-gray-800 border border-gray-300 w-full text-base pr-8 
+                                rounded-t-lg sm:rounded-l-lg sm:rounded-r-none sm:border-r-0"
                       style={{ height: 'calc(var(--spacing) * 14)' }}
                     >
                       <SelectValue placeholder="Saya Penjual" />
@@ -64,17 +66,18 @@ export default function RekberLanding() {
                   </Select>
                 </div>
 
-                <div className="col-span-2">
+                {/* Select 2 */}
+                <div className="sm:col-span-2">
                   <Select defaultValue="jual-beli">
                     <SelectTrigger
-                      className="bg-white text-gray-500 border border-gray-300 rounded-l-none w-full text-base"
+                      className="bg-white text-gray-500 border border-gray-300 w-full text-base 
+                                rounded-b-lg sm:rounded-r-lg sm:rounded-l-none"
                       style={{ height: 'calc(var(--spacing) * 14)' }}
                     >
                       <SelectValue placeholder="Akun, kendaraan, gadget..." />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="jual-beli">Akun, kendaraan, gadget...</SelectItem>
-                      <SelectItem value="akun">Akun Media Sosial</SelectItem>
+                    <SelectContent> 
+                      <SelectItem value="akun">Jual Beli Akun</SelectItem>
                       <SelectItem value="mobil">Kendaraan</SelectItem>
                       <SelectItem value="gadget">Gadget & Elektronik</SelectItem>
                       <SelectItem value="jasa">Jasa & Layanan</SelectItem>
@@ -117,7 +120,7 @@ export default function RekberLanding() {
               </div>
 
               {/* Get Started Button */}
-              <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg">
+              <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">
                 Mulai sekarang
               </Button>
             </div>
