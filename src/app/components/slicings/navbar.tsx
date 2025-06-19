@@ -10,40 +10,31 @@ import LogoRekber from '@/app/components/atom/rekber';
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const navLinks = [
+    { href: '#home', label: 'Home' },
+    { href: '#features', label: 'About' },
+    { href: '#showcase', label: 'Contact' },
+    { href: '#pricing', label: 'Term & Condition' },
+  ];
+
   return (
     <nav className='bg-white/95 backdrop-blur-sm border-b border-gray-100 px-6 py-4 sticky top-0 z-50'>
       <div className='max-w-7xl mx-auto flex items-center justify-between'>
-        {/* Logo & Desktop Menu */}
         <div className='flex items-center space-x-8'>
           <LogoRekber />
           <div className='hidden md:flex items-center space-x-8'>
-            <a
-              href='#home'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              Home
-            </a>
-            <a
-              href='#features'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              About
-            </a>
-            <a
-              href='#showcase'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              Contact
-            </a>
-            <a
-              href='#pricing'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              Term & Condition
-            </a>
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
+                scroll={false}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
-        {/* Desktop Auth Buttons */}
         <div className='hidden md:flex items-center space-x-4 '>
           <Link href='/auth/register'>
             <Button
@@ -54,13 +45,11 @@ export default function Navbar() {
             </Button>
           </Link>
           <Link href='/auth/login'>
-            {' '}
             <Button className='bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl  cursor-pointer transition-all'>
               Login
             </Button>
           </Link>
         </div>
-        {/* Mobile Menu Button */}
         <div className='flex md:hidden'>
           <button
             type='button'
@@ -76,7 +65,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -86,48 +74,31 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className='md:hidden absolute left-0 right-0 top-full z-50 bg-white rounded-xl shadow-lg px-6 py-4 space-y-2'
           >
-            <a
-              href='#home'
-              className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
-              onClick={() => setOpen(false)}
-            >
-              Home
-            </a>
-            <a
-              href='#features'
-              className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
-              onClick={() => setOpen(false)}
-            >
-              Features
-            </a>
-            <a
-              href='#showcase'
-              className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
-              onClick={() => setOpen(false)}
-            >
-              Showcase
-            </a>
-            <a
-              href='#pricing'
-              className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
-              onClick={() => setOpen(false)}
-            >
-              Pricing
-            </a>
-            <a
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
+                scroll={false}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
               href='/auth/login'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
               Login
-            </a>
-            <a
+            </Link>
+            <Link
               href='/auth/register'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
               onClick={() => setOpen(false)}
             >
               Registrasi
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
