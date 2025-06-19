@@ -38,8 +38,8 @@ export const landingText = {
     'Pembeli memeriksa & menyetujui {category}',
     'Rekber.com membayar penjual',
   ],
-  processStepHighlight: [false, false, true, true, false], // untuk dynamic {category}
-  processStepBold: [false, false, false, false, true], // untuk bold step terakhir
+  processStepHighlight: [false, false, true, true, false],
+  processStepBold: [false, false, false, false, true],
   processStepIconColor: 'bg-green-500',
 };
 export const features = [
@@ -154,4 +154,15 @@ export const footerStatic = {
     { type: 'link', label: 'Rekber.com', href: '/' },
     '. All rights reserved. Made with in Indonesia',
   ],
+};
+export const notFoundStatic = {
+  title: 'Segera Hadir',
+  description: [
+    { type: 'highlight', text: 'rekber.com' },
+    ' masih dalam proses pengembangan, silakan kembali lagi nanti.',
+  ],
+  button: {
+    label: 'Kembali ke Beranda',
+    href: '/',
+  },
 };

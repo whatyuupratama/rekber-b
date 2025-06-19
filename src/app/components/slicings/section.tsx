@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/select';
 import { User, Car, Smartphone } from 'lucide-react';
 import { landingText } from '@/app/api/static';
-import { CategoryShowcase } from '@/app/components/atom/categoryShowcase';
+import { CategoryShowcase } from '@/app/components/molecule/categoryShowcase';
 
 const categories = [
   { icon: User, label: 'Akun', color: 'text-blue-500' },
