@@ -8,38 +8,40 @@ import {
 } from 'lucide-react';
 import { UserPlus, CreditCard } from 'lucide-react';
 
-export const heroSectionText = {
+export const landingText = {
   heading: 'Transaksi Aman',
   highlight: 'Tanpa Khawatir',
   subheading: 'Penipuan',
   description:
     'Rekber.com jembatan pembayaran antara pembeli & penjual yang terpercaya',
-  button: 'Mulai Sekarang',
-  formTitle: 'Buat Rekening Bersama',
-  formSubtitle: 'Mulai transaksi aman Anda sekarang',
-  statusLabel: 'Status',
-  nominalLabel: 'Nominal',
-  transactionTypeLabel: 'Jenis Transaksi',
-  nominalPlaceholder: 'Masukkan nominal',
-  submit: 'Lanjutkan',
+  button: 'Mulai sekarang',
+  placeholderNominal: '800.000',
+  currency: 'Rp',
+  selectStatus: [
+    { value: 'penjual', label: 'Saya Penjual' },
+    { value: 'pembeli', label: 'Saya Pembeli' },
+  ],
+  selectCategory: [
+    { value: 'jual-beli', label: 'Akun, kendaraan, gadget...' },
+    { value: 'akun', label: 'Akun Media Sosial' },
+    { value: 'mobil', label: 'Kendaraan' },
+    { value: 'gadget', label: 'Gadget & Elektronik' },
+    { value: 'jasa', label: 'Jasa & Layanan' },
+  ],
+  selectCurrency: [
+    { value: 'idr', label: 'IDR', flag: '🇮🇩', color: 'text-red-500' },
+  ],
+  processSteps: [
+    'Pembeli dan penjual setuju dengan syarat',
+    'Pembeli membayar Rekber.com',
+    'Penjual mengirim {category}',
+    'Pembeli memeriksa & menyetujui {category}',
+    'Rekber.com membayar penjual',
+  ],
+  processStepHighlight: [false, false, true, true, false], // untuk dynamic {category}
+  processStepBold: [false, false, false, false, true], // untuk bold step terakhir
+  processStepIconColor: 'bg-green-500',
 };
-
-export const heroStats = [
-  { value: '10K+', label: 'Transaksi Aman' },
-  { value: '5K+', label: 'Pengguna Aktif' },
-  { value: '99%', label: 'Tingkat Kepuasan' },
-];
-
-export const statusOptions = [
-  { value: 'seller', label: 'Saya Penjual' },
-  { value: 'buyer', label: 'Saya Pembeli' },
-];
-
-export const transactionTypes = [
-  { value: 'online', label: 'Jual Beli Online' },
-  { value: 'offline', label: 'Jual Beli Offline' },
-  { value: 'service', label: 'Jasa' },
-];
 export const features = [
   {
     icon: Shield,

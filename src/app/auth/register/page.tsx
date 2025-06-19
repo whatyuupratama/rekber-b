@@ -42,48 +42,16 @@ export default function Register() {
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>
         <div className='mx-auto w-full max-w-md'>
           <Rekber className='space-x-1 font-bold pb-2' />
-          <div className='mb-8'>
-            <h2 className='text-3xl font-bold text-gray-900'>
-              Bergabung dengan Rekber
+          <div className='mb-8 pt-8'>
+            <h2 className='text-2xl font-bold text-gray-900'>
+              Bergabung dengan Rekber.com
             </h2>
             <p className='mt-2 text-gray-600'>
               Mulai transaksi aman Anda hari ini dan bergabung dengan ribuan
               pengguna lainnya
             </p>
           </div>
-          <form onSubmit={handleSubmit} className='space-y-5'>
-            <div className='grid grid-cols-2 gap-4'>
-              <div>
-                <Label
-                  htmlFor='firstName'
-                  className='text-sm font-medium text-gray-700'
-                >
-                  Nama Depan
-                </Label>
-                <Input
-                  id='firstName'
-                  type='text'
-                  placeholder='John'
-                  required
-                  className='mt-1 h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500'
-                />
-              </div>
-              <div>
-                <Label
-                  htmlFor='lastName'
-                  className='text-sm font-medium text-gray-700'
-                >
-                  Nama Belakang
-                </Label>
-                <Input
-                  id='lastName'
-                  type='text'
-                  placeholder='Doe'
-                  required
-                  className='mt-1 h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500'
-                />
-              </div>
-            </div>
+          <form onSubmit={handleSubmit} className='space-y-5'> 
             <div>
               <Label
                 htmlFor='email'

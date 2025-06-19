@@ -19,31 +19,52 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Rekber from '@/app/components/atom/rekber';
-
+import Alert from '@mui/material/Alert';
+import CryptoJS from 'crypto-js';
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!email || !password) {
+      setShowAlert(true);
+      return;
+    }
+    setShowAlert(false);
+    const splittedPassword = password.split(' ').slice(0, 24).join(' ');
+    const hashedPassword = CryptoJS.SHA256(splittedPassword).toString(
+      CryptoJS.enc.Hex
+    );
+    document.cookie = `email=${email}`;
+    document.cookie = `password=${hashedPassword}`;
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       router.push('/dashboard');
     }, 1500);
   };
+
   return (
     <div className='flex min-h-screen'>
       <div className='flex w-full flex-col justify-center px-8 py-12 lg:w-1/2 lg:px-16'>
         <div className='mx-auto w-full max-w-md'>
           <Rekber className='space-x-1 font-bold pb-2' />
-          <div className='mb-8'>
+          <div className='mb-8 pt-8'>
             <h2 className='text-3xl font-bold text-gray-900'>Selamat Datang</h2>
             <p className='mt-2 text-gray-600'>
               Masuk ke akun Anda untuk transaksi dengan aman
             </p>
           </div>
+          {showAlert && (
+            <Alert severity='error' className='mb-4'>
+              Email dan Password harus diisi
+            </Alert>
+          )}
           <form onSubmit={handleSubmit} className='space-y-6'>
             <div>
               <Label
@@ -56,8 +77,9 @@ export default function Login() {
                 id='email'
                 type='email'
                 placeholder='nama@example.com'
-                required
                 className='mt-1 h-12 border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
@@ -80,13 +102,15 @@ export default function Login() {
                   id='password'
                   type={showPassword ? 'text' : 'password'}
                   placeholder='••••••••'
-                  required
                   className='h-12 border-gray-300 pr-10 focus:border-blue-500 focus:ring-blue-500'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type='button'
                   className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600'
                   onClick={() => setShowPassword(!showPassword)}
+                  tabIndex={-1}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
