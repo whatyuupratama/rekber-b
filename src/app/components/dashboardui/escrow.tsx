@@ -294,7 +294,7 @@ export default function EscrowContent() {
                   <CardTitle className='text-lg'>Detail Pembayaran</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
                     <div>
                       <Label htmlFor='payment-method'>Metode Pembayaran</Label>
                       <Input
@@ -314,8 +314,6 @@ export default function EscrowContent() {
               </Card>
             </div>
           </div>
-
-          {/* Sidebar Dokumen Wajib */}
           <div className='space-y-6'>
             <Card>
               <CardHeader>
@@ -382,7 +380,6 @@ export default function EscrowContent() {
                 </div>
               </CardContent>
             </Card>
-
             <Button className='w-full bg-blue-600 hover:bg-blue-700'>
               Lanjutkan Transaksi
             </Button>
