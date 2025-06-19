@@ -13,9 +13,9 @@ const Rekber: React.FC<RekberProps> = ({ className }) => {
         <Image
           src='/images/Logo 1.png'
           alt='Logo'
-          width={150}
-          height={0}
-          style={{ height: 'auto' }}
+          width={120}
+          height={36}
+          style={{ height: 'auto', width: '120px' }}
         />
       </Link>
     </div>

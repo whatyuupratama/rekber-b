@@ -1,179 +1,94 @@
-'use client';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+  UserPlus,
+  CreditCard,
+  Shield,
+  CheckCircle,
+  ArrowRight,
+} from 'lucide-react';
 
-import { useState, useEffect } from 'react';
-import { User, Send, Package, CreditCard } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-export default function HowItWorks() {
-  const [activeStep, setActiveStep] = useState(0);
-
-  const steps = [
-    {
-      number: 1,
-      title: 'Pembeli dan penjual setuju',
-      icon: User,
-      color: 'bg-blue-500',
-    },
-    {
-      number: 2,
-      title: 'Pembeli melakukan deposit ke Rekber',
-      icon: Send,
-      color: 'bg-blue-500',
-    },
-    {
-      number: 3,
-      title: 'Penjual mengirim barang ke pembeli',
-      icon: Package,
-      color: 'bg-blue-500',
-    },
-    {
-      number: 4,
-      title: 'Dana diteruskan ke saldo penjual',
-      icon: CreditCard,
-      color: 'bg-blue-500',
-    },
-    {
-      number: 5,
-      title: 'Dana diteruskan ke saldo penjual',
-      icon: CreditCard,
-      color: 'bg-blue-500',
-    },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev === steps.length - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [steps.length]);
-
-  const progressPercentage = ((activeStep + 1) / steps.length) * 100;
-
+export default function HowItWorksSection() {
   return (
-    <section className='py-16 px-4 bg-white'>
-      <div className='max-w-6xl mx-auto'>
+    <section className='py-20 bg-gray-50'>
+      <div className='max-w-7xl mx-auto px-6'>
         <div className='text-center mb-16'>
-          <h2 className='text-5xl font-bold text-gray-900 mb-4'>
-            Proses <span className='text-blue-600'>Rekber</span>
+          <h2 className='text-4xl font-bold text-gray-900 mb-4'>
+            Cara Kerja Rekber
           </h2>
-          <p className='text-gray-600 max-w-3xl mx-auto text-base'>
-            Jangan biarkan kekhawatiran merusak pengalaman belanja online Anda.
-            Gunakan fitur Rekening Bersama dan nikmati transaksi yang lebih
-            aman, nyaman, dan terlindungi.
+          <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+            Proses sederhana dalam 4 langkah untuk transaksi yang aman
           </p>
         </div>
-        <div className='hidden md:block relative'>
-          <div className='absolute top-24 left-0 w-full h-2 bg-gray-200 z-0 rounded-full'></div>
-          <motion.div
-            initial={{ width: '0%' }}
-            animate={{ width: `${progressPercentage}%` }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className='absolute top-24 left-0 h-2 bg-blue-500 z-10 rounded-full'
-          ></motion.div>
-          <div className='flex justify-between relative z-20 px-6'>
-            {steps.map((step, index) => (
-              <div
-                key={step.number}
-                className='flex flex-col items-center w-64'
-              >
-                <motion.div
-                  animate={
-                    activeStep === index
-                      ? {
-                          scale: [1, 1.1, 1],
-                          boxShadow: [
-                            '0px 0px 0px rgba(59, 130, 246, 0)',
-                            '0px 0px 20px rgba(59, 130, 246, 0.5)',
-                            '0px 0px 0px rgba(59, 130, 246, 0)',
-                          ],
-                        }
-                      : {}
-                  }
-                  transition={{
-                    duration: 2,
-                    repeat: activeStep === index ? Number.POSITIVE_INFINITY : 0,
-                    repeatType: 'loop',
-                  }}
-                  className={`w-16 h-16 rounded-full ${
-                    index <= activeStep ? 'bg-blue-500' : 'bg-gray-300'
-                  } flex items-center justify-center text-white mb-2 shadow-md ${
-                    activeStep === index ? 'ring-4 ring-blue-200' : ''
-                  }`}
-                >
-                  <step.icon size={28} />
-                </motion.div>
-                <div
-                  className={`w-8 h-8 rounded-full mt-2 mb-3 flex items-center justify-center text-base font-medium ${
-                    index <= activeStep
-                      ? 'bg-blue-100 text-blue-600'
-                      : 'bg-gray-100 text-gray-600'
-                  }`}
-                >
-                  {step.number}
+        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+          <div className='text-center'>
+            <Card className='bg-white border-0 shadow-lg rounded-2xl p-8 mb-4 hover:shadow-xl transition-shadow'>
+              <CardContent className='p-0'>
+                <div className='w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6'>
+                  <UserPlus className='w-8 h-8 text-blue-600' />
                 </div>
-                <p
-                  className={`text-lg font-medium ${
-                    index <= activeStep ? 'text-blue-900' : 'text-gray-500'
-                  } text-center max-w-[90%] mx-auto`}
-                >
-                  {step.title}
+                <h3 className='text-lg font-bold text-gray-900 mb-3'>
+                  1. Daftar
+                </h3>
+                <p className='text-gray-600 text-sm'>
+                  Buat akun dan verifikasi identitas Anda dengan mudah
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className='md:hidden space-y-8'>
-          {steps.map((step, index) => (
-            <div
-              key={step.number}
-              className={`flex items-center ${
-                activeStep === index ? 'opacity-100' : 'opacity-70'
-              }`}
-            >
-              <motion.div
-                animate={
-                  activeStep === index
-                    ? {
-                        scale: [1, 1.1, 1],
-                        boxShadow: [
-                          '0px 0px 0px rgba(59, 130, 246, 0)',
-                          '0px 0px 15px rgba(59, 130, 246, 0.5)',
-                          '0px 0px 0px rgba(59, 130, 246, 0)',
-                        ],
-                      }
-                    : {}
-                }
-                transition={{
-                  duration: 2,
-                  repeat: activeStep === index ? Number.POSITIVE_INFINITY : 0,
-                  repeatType: 'loop',
-                }}
-                className={`flex-shrink-0 w-14 h-14 md:w-20 md:h-20 rounded-full ${
-                  index <= activeStep ? 'bg-blue-500' : 'bg-gray-300'
-                } flex items-center justify-center text-white mr-4`}
-              >
-                <step.icon size={22} />
-              </motion.div>
-              <div className='flex items-center'>
-                <span
-                  className={`${
-                    index <= activeStep
-                      ? 'bg-blue-100 text-blue-600'
-                      : 'bg-gray-100 text-gray-600'
-                  } w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-base font-medium mr-3`}
-                >
-                  {step.number}
-                </span>
-                <p
-                  className={`text-base font-medium ${
-                    index <= activeStep ? 'text-blue-900' : 'text-gray-500'
-                  }`}
-                >
-                  {step.title}
-                </p>
-              </div>
+              </CardContent>
+            </Card>
+            <div className='hidden lg:block'>
+              <ArrowRight className='w-6 h-6 text-gray-400 mx-auto' />
             </div>
-          ))}
+          </div>
+          <div className='text-center'>
+            <Card className='bg-white border-0 shadow-lg rounded-2xl p-8 mb-4 hover:shadow-xl transition-shadow'>
+              <CardContent className='p-0'>
+                <div className='w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6'>
+                  <CreditCard className='w-8 h-8 text-green-600' />
+                </div>
+                <h3 className='text-lg font-bold text-gray-900 mb-3'>
+                  2. Deposit
+                </h3>
+                <p className='text-gray-600 text-sm'>
+                  Pembeli melakukan deposit dana ke rekening bersama
+                </p>
+              </CardContent>
+            </Card>
+            <div className='hidden lg:block'>
+              <ArrowRight className='w-6 h-6 text-gray-400 mx-auto' />
+            </div>
+          </div>
+          <div className='text-center'>
+            <Card className='bg-white border-0 shadow-lg rounded-2xl p-8 mb-4 hover:shadow-xl transition-shadow'>
+              <CardContent className='p-0'>
+                <div className='w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6'>
+                  <Shield className='w-8 h-8 text-purple-600' />
+                </div>
+                <h3 className='text-lg font-bold text-gray-900 mb-3'>
+                  3. Transaksi
+                </h3>
+                <p className='text-gray-600 text-sm'>
+                  Penjual mengirim barang, pembeli konfirmasi penerimaan
+                </p>
+              </CardContent>
+            </Card>
+            <div className='hidden lg:block'>
+              <ArrowRight className='w-6 h-6 text-gray-400 mx-auto' />
+            </div>
+          </div>
+          <div className='text-center'>
+            <Card className='bg-white border-0 shadow-lg rounded-2xl p-8 mb-4 hover:shadow-xl transition-shadow'>
+              <CardContent className='p-0'>
+                <div className='w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6'>
+                  <CheckCircle className='w-8 h-8 text-orange-600' />
+                </div>
+                <h3 className='text-lg font-bold text-gray-900 mb-3'>
+                  4. Selesai
+                </h3>
+                <p className='text-gray-600 text-sm'>
+                  Dana otomatis diteruskan ke penjual setelah konfirmasi
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
