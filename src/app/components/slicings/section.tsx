@@ -15,14 +15,24 @@ const categories = [
 
 export default function RekberLanding() {
   const [currentCategory, setCurrentCategory] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0)
   const [value, setValue] = useState('');
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const categoryInterval = setInterval(() => {
       setCurrentCategory((prev) => (prev + 1) % categories.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, []) 
+    }, 6000)
+
+    const stepInterval = setInterval(() => {
+      setCurrentStep((prev) => (prev + 1) % 6) // 6 steps total (0-5, where 0 means no steps completed)
+    }, 1000) // Each step appears every 1 second
+
+    return () => {
+      clearInterval(categoryInterval)
+      clearInterval(stepInterval)
+    }
+  }, [])
+
   const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/\D/g, ''); // hanya angka
     const numberValue = Number(rawValue); 
@@ -129,8 +139,6 @@ export default function RekberLanding() {
             </div>
  
           </div>
-
-          {/* Right Section - Hidden on mobile */}
           <div className="hidden lg:block relative">
             <div className="text-center space-y-8">
               {/* Circle with Dynamic Text */}
@@ -154,7 +162,7 @@ export default function RekberLanding() {
                 <div className="text-center text-white">
                   <div className="text-lg font-semibold">Jual Beli</div>
                   <div className="text-2xl font-bold">{categories[currentCategory].label}</div>
-                  <div className="text-sm opacity-90">Aman & Mudah</div>
+                  <div className="text-sm opacity-90">Aman & Terpercaya</div>
                 </div>
 
                 {/* Floating Category Indicators */}
@@ -194,8 +202,18 @@ export default function RekberLanding() {
               {/* Process Steps */}
               <div className="space-y-4 text-left max-w-sm mx-auto">
                 <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      currentStep >= 1 ? "bg-green-500 scale-100" : "bg-gray-300 scale-75"
+                    }`}
+                  >
+                    <svg
+                      className={`w-4 h-4 text-white transition-opacity duration-300 ${
+                        currentStep >= 1 ? "opacity-100" : "opacity-0"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -203,12 +221,28 @@ export default function RekberLanding() {
                       />
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm">Pembeli dan penjual setuju dengan syarat</span>
+                  <span
+                    className={`text-sm transition-colors duration-300 ${
+                      currentStep >= 1 ? "text-gray-700 font-medium" : "text-gray-400"
+                    }`}
+                  >
+                    Pembeli dan penjual setuju dengan syarat
+                  </span>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      currentStep >= 2 ? "bg-green-500 scale-100" : "bg-gray-300 scale-75"
+                    }`}
+                  >
+                    <svg
+                      className={`w-4 h-4 text-white transition-opacity duration-300 ${
+                        currentStep >= 2 ? "opacity-100" : "opacity-0"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -216,12 +250,28 @@ export default function RekberLanding() {
                       />
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm">Pembeli membayar Rekber.com</span>
+                  <span
+                    className={`text-sm transition-colors duration-300 ${
+                      currentStep >= 2 ? "text-gray-700 font-medium" : "text-gray-400"
+                    }`}
+                  >
+                    Pembeli membayar Rekber.com
+                  </span>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      currentStep >= 3 ? "bg-green-500 scale-100" : "bg-gray-300 scale-75"
+                    }`}
+                  >
+                    <svg
+                      className={`w-4 h-4 text-white transition-opacity duration-300 ${
+                        currentStep >= 3 ? "opacity-100" : "opacity-0"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -229,14 +279,28 @@ export default function RekberLanding() {
                       />
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm">
+                  <span
+                    className={`text-sm transition-colors duration-300 ${
+                      currentStep >= 3 ? "text-gray-700 font-medium" : "text-gray-400"
+                    }`}
+                  >
                     Penjual mengirim {categories[currentCategory].label.toLowerCase()}
                   </span>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      currentStep >= 4 ? "bg-green-500 scale-100" : "bg-gray-300 scale-75"
+                    }`}
+                  >
+                    <svg
+                      className={`w-4 h-4 text-white transition-opacity duration-300 ${
+                        currentStep >= 4 ? "opacity-100" : "opacity-0"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -244,14 +308,28 @@ export default function RekberLanding() {
                       />
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm">
+                  <span
+                    className={`text-sm transition-colors duration-300 ${
+                      currentStep >= 4 ? "text-gray-700 font-medium" : "text-gray-400"
+                    }`}
+                  >
                     Pembeli memeriksa & menyetujui {categories[currentCategory].label.toLowerCase()}
                   </span>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      currentStep >= 5 ? "bg-green-500 scale-100" : "bg-gray-300 scale-75"
+                    }`}
+                  >
+                    <svg
+                      className={`w-4 h-4 text-white transition-opacity duration-300 ${
+                        currentStep >= 5 ? "opacity-100" : "opacity-0"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -259,7 +337,13 @@ export default function RekberLanding() {
                       />
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm font-semibold">Rekber.com membayar penjual</span>
+                  <span
+                    className={`text-sm transition-colors duration-300 ${
+                      currentStep >= 5 ? "text-gray-700 font-semibold" : "text-gray-400"
+                    }`}
+                  >
+                    Rekber.com membayar penjual
+                  </span>
                 </div>
               </div>
             </div>
