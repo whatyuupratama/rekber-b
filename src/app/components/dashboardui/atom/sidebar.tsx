@@ -1,21 +1,18 @@
 'use client';
 import { useState } from 'react';
-import { Home, Shield, User, BarChart3, FileText, Menu } from 'lucide-react';
+// import { Home, Shield, User, BarChart3, FileText, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Menu, Home, Shield, User } from 'lucide-react';
 
 import EscrowContent from '../escrow';
-import AccountContent from '../content';
 import HomeContent from '../home';
-import ReportsContent from '../content';
-import DocumentsContent from '../content';
+import { Content } from '@/app/components/dashboardui/content';
 import Rekberds from '@/app/components/atom/rekberds';
 
 const menuItems = [
   { icon: Home, label: 'Home', component: HomeContent },
   { icon: Shield, label: 'Escrow', component: EscrowContent },
-  { icon: User, label: 'Account', component: AccountContent },
-  { icon: FileText, label: 'Documents', component: DocumentsContent },
-  { icon: BarChart3, label: 'Reports', component: ReportsContent },
+  { icon: User, label: 'My Transactions', component: Content },
 ];
 
 export function SidebarLayout() {
