@@ -14,7 +14,7 @@ export function Header() {
                   alt='Nathan Keller'
                 />
                 <AvatarFallback className='bg-blue-500 text-white'>
-                  NK
+                  N
                 </AvatarFallback>
               </Avatar>
               <span className='text-blue-900 font-medium'>User1</span>

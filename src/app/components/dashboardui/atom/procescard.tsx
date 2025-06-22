@@ -25,7 +25,6 @@ export function ProcessCard({
         <p className='text-blue-700 text-sm leading-relaxed mb-6 max-w-xs mx-auto'>
           {description}
         </p>
-
         <Button
           variant='link'
           className='text-blue-500 hover:text-blue-600 p-0 h-auto font-normal'
