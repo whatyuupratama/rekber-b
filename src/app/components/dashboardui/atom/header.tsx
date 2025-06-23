@@ -3,8 +3,8 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
 export function Header() {
   return (
-    <header className='bg-white border-b border-blue-100 px-8 py-4'>
-      <div className='flex items-center justify-end'>
+    <header className='bg-white border-b border-blue-100 px-8 py-4' style={{ backgroundColor: '#f5f5f5' }}>
+      <div className='hidden sm:flex  items-center justify-end' >
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
             <div className='flex items-center space-x-3 cursor-pointer'>
@@ -20,6 +20,7 @@ export function Header() {
               <span className='text-blue-900 font-medium'>User1</span>
             </div>
           </DropdownMenu.Trigger>
+
           <DropdownMenu.Content
             className='bg-white rounded shadow-lg py-2 px-2 min-w-[150px] border border-blue-100'
             sideOffset={8}

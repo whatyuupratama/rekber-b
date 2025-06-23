@@ -2,17 +2,20 @@
 import { useState } from 'react';
 // import { Home, Shield, User, BarChart3, FileText, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Menu, Home, Shield, User } from 'lucide-react';
-
-import EscrowContent from '../escrow';
+import { Menu, Home, Shield, User, Wallet } from 'lucide-react';
+ 
 import HomeContent from '../home';
 import { Content } from '@/app/components/dashboardui/content';
 import Rekberds from '@/app/components/atom/rekberds';
+import { Header } from '@/app/components/dashboardui/atom/header';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import Link from 'next/link';
 
 const menuItems = [
-  { icon: Home, label: 'Home', component: HomeContent },
-  { icon: Shield, label: 'Escrow', component: EscrowContent },
-  { icon: User, label: 'My Transactions', component: Content },
+  { icon: Home, label: 'Home', component: HomeContent }, 
+  { icon: Wallet, label: 'My Transactions', component: Content },
+  { icon: User, label: 'Profile', component: Content },
 ];
 
 export function SidebarLayout() {
@@ -27,7 +30,9 @@ export function SidebarLayout() {
 
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
-      <div className='md:hidden p-4'>
+      <div className='flex justify-between items-center p-4 sm:hidden'>
+  {/* Button (hamburger menu - kiri, hanya tampil di mobile) */}
+      <div className='md:hidden'>
         <Button
           variant='ghost'
           onClick={() => setSidebarOpen(true)}
@@ -35,6 +40,42 @@ export function SidebarLayout() {
         >
           <Menu className='h-6 w-6 text-blue-600' />
         </Button>
+      </div> 
+      <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+          {/* Avatar + username (kanan) */}
+          <div className='flex items-center space-x-3 cursor-pointer'>
+            <Avatar className='h-10 w-10'>
+              <AvatarImage
+                src='/placeholder.svg?height=40&width=40'
+                alt='Nathan Keller'
+              />
+              <AvatarFallback className='bg-blue-500 text-white'>
+                N
+              </AvatarFallback>
+            </Avatar>
+            <span className='text-blue-900 font-medium'>User1</span>
+          </div> 
+        </DropdownMenu.Trigger>
+                  
+          <DropdownMenu.Content
+            className='bg-white rounded shadow-lg py-2 px-2 min-w-[150px] border border-blue-100'
+            sideOffset={8}
+          >
+          <DropdownMenu.Item className='px-3 py-2 rounded hover:bg-blue-50 cursor-pointer'>
+            Profile
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className='px-3 py-2 rounded hover:bg-blue-50 cursor-pointer'>
+            Settings
+          </DropdownMenu.Item>
+          <DropdownMenu.Separator className='h-px bg-blue-100 my-2' />
+          <Link href='/'>
+            <DropdownMenu.Item className='px-3 py-2 rounded hover:bg-blue-50 cursor-pointer text-red-500'>
+              Logout
+            </DropdownMenu.Item>
+          </Link>
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
       </div>
       <div
         className={`fixed inset-0 z-40 bg-white/30 backdrop-blur-sm transition-opacity md:hidden ${
@@ -50,7 +91,8 @@ export function SidebarLayout() {
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           md:static md:translate-x-0 md:w-64 md:block
         `}
-        style={{ minHeight: '100vh' }}
+        style={{ minHeight: '150vh', backgroundColor: '#163c76' }}
+
       >
         <div className='p-6'>
           <div className='flex items-center justify-between mb-4'>
@@ -83,6 +125,7 @@ export function SidebarLayout() {
         </div>
       </aside>
       <main className='flex-1 bg-gray-50'>
+        <Header/>
         <ActiveComponent />
       </main>
     </div>
