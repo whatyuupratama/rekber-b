@@ -7,6 +7,7 @@ import { Info } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useRouter } from 'next/navigation';
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card" 
@@ -22,10 +23,11 @@ export default function RekberForm() {
     description: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-  }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const router = useRouter(); 
+    alert("AAS");
+    router.push('/dashboard/detail-transaksi'); 
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white">
@@ -60,8 +62,7 @@ export default function RekberForm() {
                     placeholder="Enter email address"
                     value={formData.buyerEmail}
                     onChange={(e) => setFormData({ ...formData, buyerEmail: e.target.value })}
-                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 bg-white/80"
-                    required
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 bg-white/80" 
                   />
                 </div>
                 <div className="space-y-3">
@@ -74,8 +75,7 @@ export default function RekberForm() {
                     placeholder="Enter transaction title"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 bg-white/80"
-                    required
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 bg-white/80" 
                   />
                 </div>
               </div>
