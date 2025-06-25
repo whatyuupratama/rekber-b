@@ -8,7 +8,7 @@ export default function Footer() {
       <div className='max-w-7xl mx-auto px-6'>
         <div className='grid md:grid-cols-4 gap-8 mb-12'>
           <div className='space-y-4'>
-            <div class="mb-6">
+            <div className="mb-6">
             <Link href='/'>
               <Image src='/images/icon.png' alt="Logo"  width={180}  height={0} style={{ height: 'auto' }} />
             </Link> </div>

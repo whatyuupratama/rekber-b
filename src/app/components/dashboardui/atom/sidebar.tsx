@@ -2,7 +2,7 @@
 import { useState } from 'react';
 // import { Home, Shield, User, BarChart3, FileText, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Menu, Home, Shield, User, Wallet } from 'lucide-react';
+import { Menu, Home, User, Wallet } from 'lucide-react';
  
 import HomeContent from '../home';
 import { Content } from '@/app/components/dashboardui/content';
