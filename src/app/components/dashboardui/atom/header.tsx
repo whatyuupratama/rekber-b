@@ -3,7 +3,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
 export function Header() {
   return (
-    <header className='bg-white border-b border-blue-100 px-8 py-4' style={{ backgroundColor: '#f5f5f5' }}>
+    <header className='hidden sm:block bg-white border-b border-blue-100 px-8 py-4' style={{ backgroundColor: '#f5f5f5' }}>
       <div className='hidden sm:flex  items-center justify-end' >
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
@@ -27,10 +27,7 @@ export function Header() {
           >
             <DropdownMenu.Item className='px-3 py-2 rounded hover:bg-blue-50 cursor-pointer'>
               Profile
-            </DropdownMenu.Item>
-            <DropdownMenu.Item className='px-3 py-2 rounded hover:bg-blue-50 cursor-pointer'>
-              Settings
-            </DropdownMenu.Item>
+            </DropdownMenu.Item> 
             <DropdownMenu.Separator className='h-px bg-blue-100 my-2' />
             <Link href='/'>
               <DropdownMenu.Item className='px-3 py-2 rounded hover:bg-blue-50 cursor-pointer text-red-500'>

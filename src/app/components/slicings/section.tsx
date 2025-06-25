@@ -131,7 +131,7 @@ export default function RekberLanding() {
                 </div>
               </div>
 
-              <Link href='/auth/login'>
+              <Link href='/formrekber'>
                 <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">
                   Mulai sekarang
                 </Button>

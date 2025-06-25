@@ -1,6 +1,8 @@
+'use client' 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge" 
+import Link from 'next/link';
 import {
   Wallet,
   Clock,
@@ -15,7 +17,7 @@ import {
   Shield,
 } from "lucide-react"
 
-export default function Dashboard() {
+export default function Dashboard() { 
   const stats = [
     {
       title: "Saldo",
@@ -97,9 +99,11 @@ export default function Dashboard() {
                   sesuai. Jika anda Tidak memverifikasi maka anda tidak dapat menerima penarikan dana. Segera dengan
                   verifikasi Identitas anda sekarang!
                 </p>
-                <Button variant="link" className="text-blue-600 p-0 h-auto font-medium">
-                  Click Here to Verify
-                </Button>
+                <Link href='/dashboard/verifikasi'>
+                  <Button variant="link" className="text-blue-600 p-0 h-auto font-medium">
+                    Click Here to Verify
+                  </Button>
+                </Link>
               </div>
             </div>
           </CardContent>

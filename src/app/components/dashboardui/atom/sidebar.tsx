@@ -2,20 +2,22 @@
 import { useState } from 'react';
 // import { Home, Shield, User, BarChart3, FileText, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Menu, Home, User, Wallet } from 'lucide-react';
+import {Home, User, Wallet } from 'lucide-react';
  
 import HomeContent from '../home';
 import { Content } from '@/app/components/dashboardui/content';
+import  Profile  from '@/app/components/dashboardui/profile';
 import Rekberds from '@/app/components/atom/rekberds';
 import { Header } from '@/app/components/dashboardui/atom/header';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
+import { FiMenu } from 'react-icons/fi';
 
 const menuItems = [
   { icon: Home, label: 'Home', component: HomeContent }, 
   { icon: Wallet, label: 'My Transactions', component: Content },
-  { icon: User, label: 'Profile', component: Content },
+  { icon: User, label: 'Profile', component: Profile },
 ];
 
 export function SidebarLayout() {
@@ -38,7 +40,7 @@ export function SidebarLayout() {
           onClick={() => setSidebarOpen(true)}
           className='p-2'
         >
-          <Menu className='h-6 w-6 text-blue-600' />
+          <FiMenu className='!h-6 !w-6 text-blue-600' />
         </Button>
       </div> 
       <DropdownMenu.Root>
