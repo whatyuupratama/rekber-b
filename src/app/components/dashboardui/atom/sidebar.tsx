@@ -1,6 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
-// import { Home, Shield, User, BarChart3, FileText, Menu } from 'lucide-react';
+import { useState, useEffect, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Home, User, Wallet, FileText } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
@@ -15,6 +14,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { FiMenu } from 'react-icons/fi';
 import DetailTransaksi from '@/app/components/dashboardui/transaksidetail';
 import { useSearchParams } from 'next/navigation';
+
 const menuItems = [
   { icon: Home, label: 'Home', component: HomeContent },
   { icon: Wallet, label: 'My Transactions', component: Content },
@@ -22,7 +22,7 @@ const menuItems = [
   { icon: User, label: 'Profile', component: Profile },
 ];
 
-export function SidebarLayout() {
+function SidebarContent() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const ActiveComponent = menuItems[activeIndex].component;
@@ -37,10 +37,11 @@ export function SidebarLayout() {
   const handleProfileClick = () => {
     setActiveIndex(3);
   };
+
   useEffect(() => {
     const tab = searchParams?.get('tab');
     if (tab === 'detail-transaksi') {
-      setActiveIndex(2); // Index untuk Detail Transaksi
+      setActiveIndex(2);
     }
   }, [searchParams]);
 
@@ -94,7 +95,6 @@ export function SidebarLayout() {
               className='px-3 py-2 rounded-md hover:bg-blue-50 cursor-pointer transition-colors duration-150 focus:bg-blue-50 focus:outline-none'
               onClick={() => setActiveIndex(3)}
             >
-              {' '}
               Profile
             </DropdownMenu.Item>
             <DropdownMenu.Item className='px-3 py-2 rounded-md hover:bg-blue-50 cursor-pointer transition-colors duration-150 focus:bg-blue-50 focus:outline-none'>
@@ -162,5 +162,54 @@ export function SidebarLayout() {
         <ActiveComponent />
       </main>
     </div>
+  );
+}
+
+function SidebarSkeleton() {
+  return (
+    <div className='flex flex-col md:flex-row min-h-screen'>
+      <div className='flex justify-between items-center p-4 sm:hidden'>
+        <div className='w-10 h-10 bg-gray-300 rounded animate-pulse'></div>
+        <div className='flex items-center space-x-3'>
+          <div className='w-10 h-10 bg-gray-300 rounded-full animate-pulse'></div>
+          <div className='w-20 h-4 bg-gray-300 rounded animate-pulse'></div>
+        </div>
+      </div>
+      <aside className='fixed top-0 left-0 z-50 h-full w-64 bg-blue-600 text-white md:static md:w-64 md:block'>
+        <div className='p-6'>
+          <div className='w-32 h-8 bg-blue-500 rounded mb-4 animate-pulse'></div>
+          <nav className='space-y-2'>
+            {[...Array(4)].map((_, index) => (
+              <div
+                key={index}
+                className='w-full h-10 bg-blue-500 rounded animate-pulse'
+              ></div>
+            ))}
+          </nav>
+        </div>
+      </aside>
+      <main className='flex-1 bg-gray-50'>
+        <div className='h-16 bg-white border-b border-gray-200 animate-pulse'></div>
+        <div className='p-6'>
+          <div className='w-48 h-8 bg-gray-300 rounded mb-6 animate-pulse'></div>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className='h-32 bg-gray-300 rounded-lg animate-pulse'
+              ></div>
+            ))}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export function SidebarLayout() {
+  return (
+    <Suspense fallback={<SidebarSkeleton />}>
+      <SidebarContent />
+    </Suspense>
   );
 }
