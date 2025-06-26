@@ -23,6 +23,16 @@ export function Header({ onProfileClick }: HeaderProps) {
     return 'user';
   };
 
+  const getInitials = (session: Session | null) => {
+    if (session?.user?.name) {
+      return session.user.name.charAt(0).toUpperCase();
+    }
+    if (session?.user?.email) {
+      return session.user.email.charAt(0).toUpperCase();
+    }
+    return 'U';
+  };
+
   return (
     <header
       className='hidden sm:block bg-white border-b border-blue-100 px-8 py-4'
@@ -33,12 +43,14 @@ export function Header({ onProfileClick }: HeaderProps) {
           <DropdownMenu.Trigger asChild>
             <div className='flex items-center space-x-3 cursor-pointer hover:bg-blue-50/10 rounded-lg p-2 transition-all duration-200'>
               <Avatar className='h-10 w-10'>
-                <AvatarImage
-                  src='/placeholder.svg?height=40&width=40'
-                  alt='Nathan Keller'
-                />
+                {session?.user?.image ? (
+                  <AvatarImage
+                    src={session.user.image}
+                    alt={session.user.name || 'User Avatar'}
+                  />
+                ) : null}
                 <AvatarFallback className='bg-blue-500 text-white'>
-                  N
+                  {getInitials(session)}
                 </AvatarFallback>
               </Avatar>
               <span className='text-blue-900 font-medium'>
@@ -52,7 +64,7 @@ export function Header({ onProfileClick }: HeaderProps) {
             sideOffset={8}
             style={{ zIndex: 9999 }}
           >
-            <DropdownMenu.Item 
+            <DropdownMenu.Item
               className='px-3 py-2 rounded-md hover:bg-blue-50 cursor-pointer transition-colors duration-150 focus:bg-blue-50 focus:outline-none'
               onClick={onProfileClick}
             >
