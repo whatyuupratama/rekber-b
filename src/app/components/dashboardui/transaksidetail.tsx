@@ -24,8 +24,6 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { SidebarLayout } from '@/app/components/dashboardui/atom/sidebar';
-import Footer from '@/app/components/slicings/footer';
 
 export default function TransactionDetails() {
   const [message, setMessage] = useState('');
@@ -84,7 +82,6 @@ export default function TransactionDetails() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white'>
-      <SidebarLayout />
       {/* Main Content */}
       <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
@@ -324,7 +321,6 @@ export default function TransactionDetails() {
           </Card>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
