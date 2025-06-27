@@ -278,7 +278,7 @@ export default function TransactionInterface() {
               </div>
 
               {/* Action Button */}
-              <Button className="w-full bg-red-600 hover:bg-red-700 text-white">✕ Batalkan Transaksi</Button>
+              <Button className="justify-center bg-red-600 hover:bg-red-700 text-white">✕ Batalkan Transaksi</Button>
             </CardContent>
           </Card>
         </div>

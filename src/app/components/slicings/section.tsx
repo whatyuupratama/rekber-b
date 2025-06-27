@@ -4,8 +4,10 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { User, Car, Smartphone } from "lucide-react"
+import { User, Car, Smartphone, Calculator,TrendingUp } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 import Link from 'next/link';
+import { Separator } from "@/components/ui/separator"
 
 const categories = [
   { icon: User, label: "Akun", color: "text-blue-500" },
@@ -15,9 +17,8 @@ const categories = [
 
 export default function RekberLanding() {
   const [currentCategory, setCurrentCategory] = useState(0)
-  const [currentStep, setCurrentStep] = useState(0)
-  const [value, setValue] = useState('');
-
+  const [currentStep, setCurrentStep] = useState(0) 
+  
   useEffect(() => {
     const categoryInterval = setInterval(() => {
       setCurrentCategory((prev) => (prev + 1) % categories.length)
@@ -33,16 +34,59 @@ export default function RekberLanding() {
     }
   }, [])
 
-  const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value.replace(/\D/g, ''); // hanya angka
-    const numberValue = Number(rawValue); 
-    const formattedValue = new Intl.NumberFormat('id-ID').format(numberValue);
-    setValue(formattedValue);
-  }; 
+  const [amount, setAmount] = useState("")   
+  const [fee, setFee] = useState(0)
+  const [totalAmount, setTotalAmount] = useState(0)
+
+  // Fungsi untuk menghitung fee
+  const calculateFee = (inputAmount: number) => {
+    if (inputAmount <= 0) return 0
+
+    let calculatedFee = 0
+    const hundredMillion = 100000000 // 100 juta
+
+    if (inputAmount < hundredMillion) {
+      // Dibawah 100 juta = 1%
+      calculatedFee = inputAmount * 0.01
+    } else {
+      // Lebih dari 100 juta = 0.5%
+      calculatedFee = inputAmount * 0.005
+    }
+
+    // Minimum fee adalah 10.000
+    return Math.max(calculatedFee, 10000)
+  }
+
+  // Format currency untuk display
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value)
+  }
+
+  // Format number dengan separator
+  const formatNumber = (value: string) => {
+    const number = value.replace(/\D/g, "")
+    return new Intl.NumberFormat("id-ID").format(Number.parseInt(number) || 0)
+  }
+
+  // Handle perubahan amount
+  const handleAmountChange = (value: string) => {
+    const numericValue = value.replace(/\D/g, "")
+    setAmount(numericValue)
+
+    const parsedAmount = Number.parseInt(numericValue) || 0
+    const calculatedFee = calculateFee(parsedAmount)
+    setFee(calculatedFee)
+    setTotalAmount(parsedAmount + calculatedFee)
+  }
   return (
     <div className="bg-gradient-to-br from-gray-50 to-blue-50">   
       <div className="container mx-auto px-6 py-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Section */}
           <div className="space-y-8">
             <div className="space-y-6">
@@ -101,9 +145,9 @@ export default function RekberLanding() {
               <div className="grid grid-cols-3 gap-0">
                 <div className="relative col-span-2">
                   <Input
-                    placeholder="800.000" 
-                    value={value}
-                    onChange={handleChange}
+                    placeholder="1.000.000" 
+                    value={formatNumber(amount)}
+                    onChange={(e) => handleAmountChange(e.target.value)}
                     className="bg-white text-gray-800 border border-gray-300 rounded-r-none h-14 text-base pl-16 w-full"
                   />
                   <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 font-medium text-base">
@@ -130,6 +174,52 @@ export default function RekberLanding() {
                   </Select>
                 </div>
               </div>
+
+                {/* Fee Calculation - Show only when amount is entered */}
+                {amount && Number.parseInt(amount) > 0 && (
+                  <Card className="bg-blue-50 border-blue-200 p-0">
+                    <CardContent className="p-4 space-y-3">
+                      <div className="flex items-center space-x-2 text-blue-700">
+                        <Calculator className="h-4 w-4" />
+                        <span className="font-semibold">Kalkulasi Biaya</span>
+                      </div>
+
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Jumlah Transaksi:</span>
+                          <span className="font-semibold">{formatCurrency(Number.parseInt(amount))}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">
+                            Fee ({Number.parseInt(amount) < 100000000 ? "1%" : "0.5%"}, min. Rp 10.000):
+                          </span>
+                          <span className="font-semibold text-orange-600">{formatCurrency(fee)}</span>
+                        </div>
+
+                        <Separator />
+
+                        <div className="flex justify-between text-base">
+                          <span className="font-semibold text-blue-700">Total yang Harus Dibayar:</span>
+                          <span className="font-bold text-blue-700">{formatCurrency(totalAmount)}</span>
+                        </div>
+                      </div>
+
+                      {/* Fee Info */}
+                      <div className="mt-3 p-3 bg-white rounded-lg border border-blue-200">
+                        <div className="flex items-start space-x-2">
+                          <TrendingUp className="h-4 w-4 text-blue-500 mt-0.5" />
+                          <div className="text-xs text-gray-600">
+                            <p className="font-medium text-blue-600 mb-1">Informasi Fee:</p>
+                            <p>• Transaksi dibawah Rp 100.000.000 = 1%</p>
+                            <p>• Transaksi diatas Rp 100.000.000 = 0.5%</p>
+                            <p>• Fee minimum adalah Rp 10.000</p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
 
               <Link href='/formrekber'>
                 <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">

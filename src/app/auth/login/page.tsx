@@ -230,26 +230,7 @@ export default function Login() {
                 )}
               </Button>
             </form>
-
-            <div className='mt-4 p-3 bg-gray-100 rounded-md text-sm text-gray-600'>
-              <p className='font-medium'>
-                Login dengan email dan password apapun:
-              </p>
-              <p>
-                Email:{' '}
-                <code className='bg-gray-200 px-1 rounded'>
-                  contoh@email.com
-                </code>
-              </p>
-              <p>
-                Password:{' '}
-                <code className='bg-gray-200 px-1 rounded'>password123</code>
-              </p>
-              <p className='text-xs text-gray-500 mt-1'>
-                * Email harus valid dan password minimal 3 karakter
-              </p>
-            </div>
-
+ 
             <div className='my-6'>
               <div className='relative'>
                 <div className='absolute inset-0 flex items-center'>

@@ -1,22 +1,21 @@
-'use client'
+"use client"
 
-import { CreditCard, Home, User } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar'
-
-import { useSidebar } from '@/components/ui/sidebar' // pastikan useSidebar sudah tersedia
+  SidebarFooter,
+} from "@/components/ui/sidebar"
+import { Home, CreditCard, User, Settings } from "lucide-react"
 
 const menuItems = [
   {
@@ -36,22 +35,15 @@ const menuItems = [
   },
 ]
 
+ 
+
 export function AppSidebar() {
   const pathname = usePathname()
-  const { setOpenMobile, isMobile } = useSidebar()
-
-  const handleMenuClick = () => {
-    if (isMobile) {
-      setOpenMobile(false) // ⬅️ Tutup sidebar jika di mobile
-    }
-  }
-
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-lg font-bold mb-4">
-            <Link href="/">
+    <Sidebar className="border-r border-blue-100 bg-gradient-to-b from-blue-50/50 to-white">
+      <SidebarHeader className="border-b border-blue-100 p-6">
+        <div className="flex justify-center space-x-2">
+        <Link href="/">
               <Image
                 src="/images/Logo 1.png"
                 alt="Logo"
@@ -60,24 +52,46 @@ export function AppSidebar() {
                 style={{ height: 'auto' }}
               />
             </Link>
-          </SidebarGroupLabel>
+        </div>
+      </SidebarHeader>
 
+      <SidebarContent className="p-4">
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-gray-600 font-medium">Menu Utama</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={pathname === item.url}>
-                    <Link href={item.url} onClick={handleMenuClick}>
-                      <item.icon className="w-4 h-4" />
+                  <SidebarMenuButton
+                    asChild 
+                    isActive={pathname === item.url}
+                    className="data-[active=true]:bg-blue-100 data-[active=true]:text-blue-700 hover:bg-blue-50"
+                  >
+                    <a href={item.url} className="flex items-center space-x-3">
+                      <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
-                    </Link>
+                    </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+ 
       </SidebarContent>
+
+      <SidebarFooter className="border-t border-blue-100 p-4">
+        <div className="flex items-center space-x-3 rounded-lg bg-blue-50 p-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
+            <User className="h-4 w-4 text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-gray-900 truncate">John Doe</p>
+            <p className="text-xs text-gray-500 truncate">john@example.com</p>
+          </div>
+          <Settings className="h-4 w-4 text-gray-400" />
+        </div>
+      </SidebarFooter>
     </Sidebar>
   )
 }
