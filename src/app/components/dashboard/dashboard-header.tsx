@@ -1,8 +1,8 @@
 'use client';
 
-import { Bell, Search, User } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Bell, User } from 'lucide-react';
+import { Button } from '@/components/ui/button'; 
+import Link from 'next/link'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,14 +18,14 @@ export function DashboardHeader() {
     <header className='flex h-16 items-center justify-between border-b bg-background px-6'>
       <div className='flex items-center gap-4'>
         <SidebarTrigger />
-        <div className='relative'>
+        {/* <div className='relative'>
           <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
           <Input
             type='search'
             placeholder='Cari transaksi...'
             className='pl-8 w-[300px]'
           />
-        </div>
+        </div> */}
       </div>
 
       <div className='flex items-center gap-4'>
@@ -42,7 +42,7 @@ export function DashboardHeader() {
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Akun Saya</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profil</DropdownMenuItem>
+            <Link href="/dashboard/profile"><DropdownMenuItem>    Profil            </DropdownMenuItem></Link>
             <DropdownMenuItem>Pengaturan</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Keluar</DropdownMenuItem>

@@ -1,35 +1,101 @@
-'use client';
+"use client"
 
-import type React from 'react';
-import { useState } from 'react';
-import {
-  RefreshCw,
-  Send,
-  MessageCircle,
-  CreditCard,
-  Clock,
-  DollarSign,
-  X,
-  Copy,
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+import { Copy, Send, MessageCircle, DollarSign, User, Clock, CheckCircle, AlertCircle } from "lucide-react"
 import { useParams } from 'next/navigation';
-export default function TransactionDetails() {
+ 
+interface ChatMessage {
+  id: string
+  sender: "buyer" | "seller" | "admin"
+  message: string
+  timestamp: string
+}
+
+export default function TransactionInterface() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<
     Array<{ id: number; sender: string; text: string; time: string }>
   >([]);
+  const [chatMessages] = useState<ChatMessage[]>([
+    {
+      id: "1",
+      sender: "admin",
+      message: "Transaksi telah dimulai. Silakan lakukan pembayaran sesuai instruksi.",
+      timestamp: "10:30",
+    },
+    {
+      id: "2",
+      sender: "buyer",
+      message: "Sudah transfer, mohon dicek",
+      timestamp: "10:45",
+    },
+  ])
+
+  const [transactionProgress] = useState([
+    {
+      id: "1",
+      title: "Transaksi Dibuat",
+      description: "Transaksi TXN-002 telah dibuat oleh penjual",
+      status: "completed",
+      timestamp: "2024-01-22 09:30:00",
+      icon: "create",
+    },
+    {
+      id: "2",
+      title: "Menunggu Pembayaran",
+      description: "Pembeli diminta untuk melakukan pembayaran ke rekening escrow",
+      status: "completed",
+      timestamp: "2024-01-22 09:35:00",
+      icon: "payment",
+    },
+    {
+      id: "3",
+      title: "Pembayaran Diterima",
+      description: "Dana sebesar Rp 213.123,00 telah diterima di rekening escrow",
+      status: "current",
+      timestamp: "2024-01-22 10:45:00",
+      icon: "received",
+    },
+    {
+      id: "4",
+      title: "Verifikasi Pembayaran",
+      description: "Tim admin sedang memverifikasi pembayaran yang masuk",
+      status: "pending",
+      timestamp: "",
+      icon: "verify",
+    },
+    {
+      id: "5",
+      title: "Penjual Mengirim Barang",
+      description: "Penjual akan mengirimkan detail akun kepada pembeli",
+      status: "pending",
+      timestamp: "",
+      icon: "delivery",
+    },
+    {
+      id: "6",
+      title: "Konfirmasi Penerimaan",
+      description: "Pembeli mengkonfirmasi bahwa barang/akun telah diterima",
+      status: "pending",
+      timestamp: "",
+      icon: "confirm",
+    },
+    {
+      id: "7",
+      title: "Dana Dicairkan",
+      description: "Dana akan dicairkan ke rekening penjual setelah konfirmasi",
+      status: "pending",
+      timestamp: "",
+      icon: "withdraw",
+    },
+  ])
+  
   const params = useParams();
   const transactionId = (params?.id ?? '') as string;
   const transactionData = {
@@ -45,14 +111,43 @@ export default function TransactionDetails() {
     escrowPending: 0.0,
     escrowAmount: 213123.0,
   };
+  const getProgressIcon = (iconType: string, status: string) => {
+    const iconClass =
+      status === "completed" ? "text-green-500" : status === "current" ? "text-blue-500" : "text-gray-400"
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 2,
-    }).format(amount);
-  };
+    switch (iconType) {
+      case "create":
+        return <User className={`h-4 w-4 ${iconClass}`} />
+      case "payment":
+        return <DollarSign className={`h-4 w-4 ${iconClass}`} />
+      case "received":
+        return <CheckCircle className={`h-4 w-4 ${iconClass}`} />
+      case "verify":
+        return <AlertCircle className={`h-4 w-4 ${iconClass}`} />
+      case "delivery":
+        return <Send className={`h-4 w-4 ${iconClass}`} />
+      case "confirm":
+        return <CheckCircle className={`h-4 w-4 ${iconClass}`} />
+      case "withdraw":
+        return <DollarSign className={`h-4 w-4 ${iconClass}`} />
+      default:
+        return <Clock className={`h-4 w-4 ${iconClass}`} />
+    }
+  }
+
+  const getProgressBadge = (status: string) => {
+    switch (status) {
+      case "completed":
+        return <Badge className="bg-green-100 text-green-800 text-xs">Selesai</Badge>
+      case "current":
+        return <Badge className="bg-blue-100 text-blue-800 text-xs">Sedang Proses</Badge>
+      case "pending":
+        return <Badge className="bg-gray-100 text-gray-600 text-xs">Menunggu</Badge>
+      default:
+        return <Badge className="bg-gray-100 text-gray-600 text-xs">Menunggu</Badge>
+    }
+  }
+  
 
   const handleSendMessage = () => {
     if (message.trim()) {
@@ -69,50 +164,35 @@ export default function TransactionDetails() {
       setMessage('');
     }
   };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
-  };
-
+  
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSendMessage();
+      }
+    };
+  
   const copyTransactionId = () => {
     navigator.clipboard.writeText(transactionData.id);
   };
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white'>
-      <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-          <Card className='shadow-xl border-0 bg-white/70 backdrop-blur-sm'>
-            <CardHeader className='pb-6'>
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center space-x-3'>
-                  <div className='w-10 h-10 bg-green-100 rounded-full flex items-center justify-center'>
-                    <CreditCard className='w-5 h-5 text-green-600' />
-                  </div>
-                  <div>
-                    <CardTitle className='text-xl font-bold text-slate-800'>
-                      Selling Jual Beli Akun
-                    </CardTitle>
-                    <CardDescription className='text-slate-600 mt-1'>
-                      Detail transaksi escrow
-                    </CardDescription>
-                  </div>
+    <div className="min-h-screen bg-gray-50"> 
+      <div className="flex flex-col md:flex-row">
+        {/* Main Content - Transaction Details (2/3 width) */}
+        <div className="flex-1 p-6 md:flex-[2] pr-0">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl font-semibold text-blue-600">Selling Jual Beli Akun</CardTitle>
+                  <p className="text-sm text-gray-600 mt-1">Detail transaksi escrow</p>
                 </div>
-                <Badge
-                  variant='secondary'
-                  className='bg-amber-100 text-amber-800 border-amber-200 px-3 py-1 font-medium'
-                >
-                  <Clock className='w-3 h-3 mr-1' />
-                  Pending
-                </Badge>
+                <Badge className="bg-yellow-100 text-yellow-800">Pending</Badge>
               </div>
             </CardHeader>
-
-            <CardContent className='space-y-6'>
-              {/* Transaction ID */}
+            <CardContent className="space-y-6">
+              {/* Transaction Number */}
               <div className='flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-200'>
                 <div>
                   <p className='text-sm font-medium text-slate-700'>
@@ -132,143 +212,160 @@ export default function TransactionDetails() {
                 </Button>
               </div>
 
-              {/* Basic Info */}
-              <div className='grid grid-cols-2 gap-4'>
-                <div className='space-y-2'>
-                  <p className='text-sm font-medium text-slate-700'>Judul</p>
-                  <p className='text-slate-900 font-medium'>
-                    {transactionData.title}
-                  </p>
+              {/* Transaction Details */}
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Judul transaksi</label>
+                  <p className="mt-1">transaksi</p>
                 </div>
-                <div className='space-y-2'>
-                  <p className='text-sm font-medium text-slate-700'>Pembeli</p>
-                  <p className='text-slate-900 font-medium'>
-                    {transactionData.buyer}
-                  </p>
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Pembeli</label>
+                  <p className="mt-1">ads@adasd</p>
                 </div>
               </div>
 
-              <div className='grid grid-cols-2 gap-4'>
-                <div className='space-y-2'>
-                  <p className='text-sm font-medium text-slate-700'>
-                    Biaya Admin
-                  </p>
-                  <Badge variant='outline' className='w-fit'>
-                    {transactionData.adminFee}
-                  </Badge>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Biaya Admin</label>
+                  <p className="mt-1">Penjual</p>
                 </div>
-                <div className='space-y-2'>
-                  <p className='text-sm font-medium text-slate-700'>Status</p>
-                  <Badge
-                    variant='secondary'
-                    className='bg-amber-100 text-amber-800 border-amber-200 w-fit'
-                  >
-                    {transactionData.status}
-                  </Badge>
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Status</label>
+                  <div className="mt-1">
+                    <Badge className="bg-yellow-100 text-yellow-800">Rekber Belum diterima</Badge>
+                  </div>
                 </div>
               </div>
 
               <Separator />
 
               {/* Financial Details */}
-              <div className='space-y-4'>
-                <h3 className='font-semibold text-slate-800 flex items-center'>
-                  <DollarSign className='w-4 h-4 mr-2' />
-                  Rincian Keuangan
+              <div>
+                <h3 className="text-lg font-semibold flex items-center space-x-2 mb-4">
+                  <DollarSign className="h-5 w-5" />
+                  <span>Rincian Keuangan</span>
                 </h3>
 
-                <div className='space-y-3'>
-                  <div className='flex justify-between items-center'>
-                    <span className='text-slate-600'>Jumlah</span>
-                    <span className='font-semibold text-slate-900'>
-                      {formatCurrency(transactionData.amount)}
-                    </span>
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span>Jumlah</span>
+                    <span className="font-semibold">Rp 213.123,00</span>
                   </div>
-                  <div className='flex justify-between items-center'>
-                    <span className='text-slate-600'>Fee Transaksi</span>
-                    <span className='font-semibold text-slate-900'>
-                      {formatCurrency(transactionData.transactionFee)}
-                    </span>
+                  <div className="flex justify-between">
+                    <span>Fee Transaksi</span>
+                    <span className="font-semibold">Rp 47.131,23</span>
                   </div>
-                  <div className='flex justify-between items-center'>
-                    <span className='text-slate-600'>
-                      Pembayaran yang Dibuat
-                    </span>
-                    <span className='font-semibold text-slate-900'>
-                      {formatCurrency(transactionData.paymentMade)}
-                    </span>
+                  <div className="flex justify-between">
+                    <span>Pembayaran yang Dibuat</span>
+                    <span className="font-semibold">Rp 0,00</span>
                   </div>
-                  <div className='flex justify-between items-center'>
-                    <span className='text-slate-600'>Di Danai</span>
-                    <span className='font-semibold text-slate-900'>
-                      {formatCurrency(transactionData.received)}
-                    </span>
+                  <div className="flex justify-between">
+                    <span>Di Danai</span>
+                    <span className="font-semibold">Rp 0,00</span>
                   </div>
-                  <div className='flex justify-between items-center'>
-                    <span className='text-slate-600'>
-                      Rekber belum di danai
-                    </span>
-                    <span className='font-semibold text-slate-900'>
-                      {formatCurrency(transactionData.escrowPending)}
-                    </span>
+                  <div className="flex justify-between">
+                    <span>Rekber belum di danai</span>
+                    <span className="font-semibold">Rp 0,00</span>
                   </div>
 
                   <Separator />
 
-                  <div className='flex justify-between items-center p-3 bg-blue-50 rounded-lg'>
-                    <span className='font-semibold text-blue-900'>
-                      Dana yang Akan Ditahan Pihak Rekber
-                    </span>
-                    <span className='font-bold text-blue-900 text-lg'>
-                      {formatCurrency(transactionData.escrowAmount)}
-                    </span>
+                  <div className="flex justify-between text-lg font-bold text-blue-600">
+                    <span>Dana yang Akan Ditahan Pihak Rekber</span>
+                    <span>Rp 213.123,00</span>
                   </div>
                 </div>
               </div>
 
-              {/* Cancel Button */}
-              <div className='pt-4'>
-                <Button variant='destructive' className='w-full'>
-                  <X className='w-4 h-4 mr-2' />
-                  Batalkan Transaksi
-                </Button>
-              </div>
+              {/* Action Button */}
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white">✕ Batalkan Transaksi</Button>
             </CardContent>
           </Card>
+        </div>
 
-          {/* Chat Section */}
-          <Card className='shadow-xl border-0 bg-white/70 backdrop-blur-sm'>
-            <CardHeader className='pb-4'>
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center space-x-3'>
-                  <div className='w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center'>
-                    <MessageCircle className='w-5 h-5 text-blue-600' />
-                  </div>
-                  <div>
-                    <CardTitle className='text-xl font-bold text-slate-800'>
-                      Percakapan Kedua Belah Pihak
-                    </CardTitle>
-                    <CardDescription className='text-slate-600 mt-1'>
-                      Komunikasi dengan pihak lain
-                    </CardDescription>
-                  </div>
-                </div>
-                <Button
-                  variant='outline'
-                  size='sm'
-                  className='border-slate-200 text-slate-600 hover:bg-slate-50'
-                >
-                  <RefreshCw className='w-4 h-4' />
-                </Button>
-              </div>
+        {/* Right Sidebar - Chat and History (1/3 width) */}
+        <div className="w-full md:w-1/3 p-6 space-y-6">
+          {/* Transaction Progress */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center space-x-2">
+                <Clock className="h-5 w-5" />
+                <span>Progress Transaksi</span>
+              </CardTitle>
+              <p className="text-sm text-gray-600">Timeline dan status transaksi TXN-002</p>
             </CardHeader>
+            <CardContent>
+              <ScrollArea className="h-80">
+                <div className="space-y-4">
+                  {transactionProgress.map((step, index) => (
+                    <div key={step.id} className="relative">
+                      {/* Timeline line */}
+                      {index < transactionProgress.length - 1 && (
+                        <div className="absolute left-5 top-8 w-0.5 h-16 bg-gray-200"></div>
+                      )}
 
-            <CardContent className='p-0'>
-              {/* Messages Area */}
-              <div className='h-96 flex flex-col'>
-                <ScrollArea className='flex-1 px-6'>
+                      <div className="flex items-start space-x-3">
+                        {/* Icon */}
+                        <div
+                          className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center border-2 ${
+                            step.status === "completed"
+                              ? "bg-green-50 border-green-200"
+                              : step.status === "current"
+                                ? "bg-blue-50 border-blue-200"
+                                : "bg-gray-50 border-gray-200"
+                          }`}
+                        >
+                          {getProgressIcon(step.icon, step.status)}
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <h4
+                              className={`font-medium text-sm ${
+                                step.status === "current" ? "text-blue-600" : "text-gray-900"
+                              }`}
+                            >
+                              {step.title}
+                            </h4>
+                            {getProgressBadge(step.status)}
+                          </div>
+
+                          <p className="text-xs text-gray-600 mb-2">{step.description}</p>
+
+                          {step.timestamp && (
+                            <p className="text-xs text-gray-500">
+                              {new Date(step.timestamp).toLocaleString("id-ID", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+            </CardContent>
+          </Card>
+          
+          {/* Chat Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center space-x-2">
+                <MessageCircle className="h-5 w-5" />
+                <span>Percakapan Kedua Belah Pihak</span>
+              </CardTitle> 
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4"> 
+                 <ScrollArea className='flex-1 px-1 h-50'>
                   {messages.length === 0 ? (
-                    <div className='flex flex-col items-center justify-center h-full text-center py-12'>
+                    <div className='flex flex-col items-center justify-center h-full text-center py-2'> 
                       <div className='w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4'>
                         <MessageCircle className='w-8 h-8 text-slate-400' />
                       </div>
@@ -296,8 +393,15 @@ export default function TransactionDetails() {
                   )}
                 </ScrollArea>
 
-                {/* Message Input */}
-                <div className='p-6 border-t border-slate-200'>
+                {chatMessages.length === 0 && (
+                  <div className="text-center py-8">
+                    <MessageCircle className="h-12 w-12 text-gray-300 mx-auto mb-2" />
+                    <p className="text-gray-500">Belum ada percakapan</p>
+                    <p className="text-sm text-gray-400">Mulai komunikasi dengan mengirim pesan.</p>
+                  </div>
+                )}
+
+              <div className='pt-2 border-t border-slate-200'>
                   <div className='flex space-x-3'>
                     <Input
                       value={message}
@@ -309,7 +413,7 @@ export default function TransactionDetails() {
                     <Button
                       onClick={handleSendMessage}
                       disabled={!message.trim()}
-                      className='bg-green-600 hover:bg-green-700 text-white px-4 h-12'
+                      className='bg-blue-600 hover:bg-blue-700 text-white px-4 h-12'
                     >
                       <Send className='w-4 h-4' />
                     </Button>
@@ -318,8 +422,9 @@ export default function TransactionDetails() {
               </div>
             </CardContent>
           </Card>
+
         </div>
-      </main>
+      </div>
     </div>
-  );
+  )
 }

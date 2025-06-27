@@ -159,7 +159,7 @@ export default function ProfilePage() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white'>
-      <div className='p-8'>
+      <div className='p-2'>
         <Alert className='mb-8 border-amber-200 bg-amber-50'>
           <AlertTriangle className='h-4 w-4 text-amber-600' />
           <AlertDescription className='text-amber-800'>

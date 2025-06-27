@@ -1,8 +1,9 @@
-'use client';
+'use client'
 
-import { BarChart3, CreditCard, Home } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { CreditCard, Home, User } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 import {
   Sidebar,
@@ -13,7 +14,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from '@/components/ui/sidebar'
+
+import { useSidebar } from '@/components/ui/sidebar' // pastikan useSidebar sudah tersedia
 
 const menuItems = [
   {
@@ -27,35 +30,45 @@ const menuItems = [
     icon: CreditCard,
   },
   {
-    title: 'Verifikasi',
-    url: '/dashboard/verifikasi',
-    icon: CreditCard,
-  },
-  {
     title: 'Profile',
     url: '/dashboard/profile',
-    icon: CreditCard,
+    icon: User,
   },
-];
+]
 
 export function AppSidebar() {
-  const pathname = usePathname();
+  const pathname = usePathname()
+  const { setOpenMobile, isMobile } = useSidebar()
+
+  const handleMenuClick = () => {
+    if (isMobile) {
+      setOpenMobile(false) // ⬅️ Tutup sidebar jika di mobile
+    }
+  }
 
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className='text-lg font-bold mb-4'>
-            <BarChart3 className='w-6 h-6 mr-2' />
-            Dashboard App
+          <SidebarGroupLabel className="text-lg font-bold mb-4">
+            <Link href="/">
+              <Image
+                src="/images/Logo 1.png"
+                alt="Logo"
+                width={180}
+                height={0}
+                style={{ height: 'auto' }}
+              />
+            </Link>
           </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={pathname === item.url}>
-                    <Link href={item.url}>
-                      <item.icon className='w-4 h-4' />
+                    <Link href={item.url} onClick={handleMenuClick}>
+                      <item.icon className="w-4 h-4" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -66,5 +79,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  );
+  )
 }

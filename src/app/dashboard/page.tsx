@@ -1,7 +1,7 @@
 'use client';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent,CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-// import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import {
   Wallet,
@@ -13,6 +13,7 @@ import {
   CheckCircle,
   AlertTriangle,
   XCircle,
+  Eye,
   Shield,
 } from 'lucide-react';
 
@@ -114,7 +115,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className='lg:col-span-3'>
             <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4'>
               {stats.map((stat, index) => (
@@ -151,7 +152,38 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className='lg:col-span-1'></div>
+          <div className="lg:col-span-1">
+            <Card className="h-fit">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-gray-900">Daftar Riwayat Transaksi.</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-100 rounded-full">
+                      <Shield className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-gray-900">
+                        Rekber.com Terdaftar dan diawasi Oleh Bank Indonesia dan Kominfo.
+                      </p>
+                      <Badge variant="secondary" className="bg-blue-100 text-blue-800 text-xs">
+                        Belum ada transaksi
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center py-8">
+                  <div className="p-3 bg-gray-100 rounded-full w-fit mx-auto mb-3">
+                    <Eye className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <p className="text-sm text-gray-500">Riwayat transaksi akan muncul di sini</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
         </div>
       </div>
     </div>

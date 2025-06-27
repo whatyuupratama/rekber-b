@@ -4,14 +4,14 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className='bg-gray-900 text-white py-16 relative z-0'>
+    <footer className='bg-gray-900 text-white py-16 relative z-0 z-[999]'>
       <div className='max-w-7xl mx-auto px-6'>
         <div className='grid md:grid-cols-4 gap-8 mb-12'>
           <div className='space-y-4'>
             <div className='mb-6'>
               <Link href='/'>
                 <Image
-                  src='/images/icon.png'
+                  src='/images/logo 1.png'
                   alt='Logo'
                   width={180}
                   height={0}

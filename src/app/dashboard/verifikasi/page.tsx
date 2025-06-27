@@ -115,16 +115,7 @@ export default function VerificationForm() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white'>
-      <main className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-        <div className='mb-8'>
-          <h1 className='text-3xl font-bold text-slate-800 mb-3'>
-            Verifikasi Identitas
-          </h1>
-          <p className='text-slate-600 text-lg leading-relaxed'>
-            Lengkapi formulir di bawah ini untuk memverifikasi identitas Anda
-            dan mengaktifkan semua fitur platform.
-          </p>
-        </div>
+      <main className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8'> 
 
         <Card className='shadow-xl border-0 bg-white/70 backdrop-blur-sm'>
           <CardHeader className='pb-8'>
