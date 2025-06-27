@@ -6,8 +6,8 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import type { Session } from 'next-auth';
 import HomeContent from '@/app/dashboard/home-dashboard/page';
-import MyTransaksiPage from '@/app/dashboard/my-transaksi/page';
-import { ProfileContent } from '@/app/dashboard/profile/page';
+import { MyTransaksiContent } from '@/app/dashboard/my-transaksi/components/mytransaksicontent';
+import { ProfileContent } from '@/app/dashboard/profile/components/ProfileContent';
 import Rekberds from '@/app/components/atom/rekberds';
 import { Header } from '@/app/components/dashboardui/atom/header';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -21,7 +21,7 @@ const menuItems = [
   {
     icon: Wallet,
     label: 'My Transactions',
-    component: MyTransaksiPage,
+    component: MyTransaksiContent,
     path: '/dashboard/my-transaksi',
   },
   {
