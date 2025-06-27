@@ -24,17 +24,13 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import Footer from '@/app/components/slicings/footer';
 import { useParams } from 'next/navigation';
-import { Header } from '@/app/components/dashboardui/atom/header';
-import { useRouter } from 'next/navigation';
 export default function TransactionDetails() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<
     Array<{ id: number; sender: string; text: string; time: string }>
   >([]);
   const params = useParams();
-  const router = useRouter();
   const transactionId = (params?.id ?? '') as string;
   const transactionData = {
     id: transactionId,
@@ -73,9 +69,6 @@ export default function TransactionDetails() {
       setMessage('');
     }
   };
-  const handleProfileClick = () => {
-    router.push('/dashboard/profile');
-  };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -90,7 +83,6 @@ export default function TransactionDetails() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white'>
-      <Header onProfileClick={handleProfileClick} />
       <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
           <Card className='shadow-xl border-0 bg-white/70 backdrop-blur-sm'>
@@ -328,7 +320,6 @@ export default function TransactionDetails() {
           </Card>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

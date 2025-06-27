@@ -20,8 +20,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import NavBar from '../../components/slicings/navbar';
-import Footer from '../../components/slicings/footer';
 
 export default function VerificationForm() {
   const [formData, setFormData] = useState({
@@ -60,7 +58,10 @@ export default function VerificationForm() {
     return (
       <div className='space-y-3'>
         <div className='flex items-center space-x-2'>
-          <Label className='text-sm font-semibold text-slate-700'>
+          <Label
+            htmlFor={field}
+            className='text-sm font-semibold text-slate-700'
+          >
             {label} <span className='text-red-500'>*</span>
           </Label>
           {hasInfo && (
@@ -76,6 +77,7 @@ export default function VerificationForm() {
             onChange={handleFileChange(field)}
             className='absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10'
             id={field}
+            required
           />
           <div className='border-2 border-dashed border-slate-200 rounded-xl p-8 bg-white/50 hover:bg-white/80 hover:border-blue-300 transition-all duration-200 cursor-pointer'>
             <div className='flex flex-col items-center space-y-4'>
@@ -113,8 +115,6 @@ export default function VerificationForm() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-white'>
-      <NavBar />
-
       <main className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
         <div className='mb-8'>
           <h1 className='text-3xl font-bold text-slate-800 mb-3'>
@@ -201,7 +201,10 @@ export default function VerificationForm() {
                       setFormData({ ...formData, gender: value })
                     }
                   >
-                    <SelectTrigger className='w-full h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 bg-white/80'>
+                    <SelectTrigger
+                      id='gender'
+                      className='w-full h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 bg-white/80'
+                    >
                       <SelectValue placeholder='Pilih Salah Satu' />
                     </SelectTrigger>
                     <SelectContent>
@@ -237,7 +240,6 @@ export default function VerificationForm() {
           </CardContent>
         </Card>
       </main>
-      <Footer />
     </div>
   );
 }
