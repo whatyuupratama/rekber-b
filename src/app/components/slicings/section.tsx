@@ -18,7 +18,7 @@ const categories = [
 export default function RekberLanding() {
   const [currentCategory, setCurrentCategory] = useState(0)
   const [currentStep, setCurrentStep] = useState(0) 
-  
+
   useEffect(() => {
     const categoryInterval = setInterval(() => {
       setCurrentCategory((prev) => (prev + 1) % categories.length)
@@ -43,7 +43,7 @@ export default function RekberLanding() {
     if (inputAmount <= 0) return 0
 
     let calculatedFee = 0
-    const hundredMillion = 100000000 // 100 juta
+    const hundredMillion = 10000000 // 100 juta
 
     if (inputAmount < hundredMillion) {
       // Dibawah 100 juta = 1%
@@ -52,7 +52,10 @@ export default function RekberLanding() {
       // Lebih dari 100 juta = 0.5%
       calculatedFee = inputAmount * 0.005
     }
-
+    window.scrollTo({
+      top: 400,
+      behavior: 'smooth',
+    })
     // Minimum fee adalah 10.000
     return Math.max(calculatedFee, 10000)
   }
@@ -176,8 +179,15 @@ export default function RekberLanding() {
               </div>
 
                 {/* Fee Calculation - Show only when amount is entered */}
+              <div className="mt-4 flex flex-col sm:flex-row gap-4 items-start">
+                <Link href='/formrekber' className="w-full sm:w-[160px]">
+                  <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">
+                    Mulai sekarang
+                  </Button>
+                </Link>
+
                 {amount && Number.parseInt(amount) > 0 && (
-                  <Card className="bg-blue-50 border-blue-200 p-0">
+                  <Card className="bg-blue-50 border-blue-200 p-0 w-full">
                     <CardContent className="p-4 space-y-3">
                       <div className="flex items-center space-x-2 text-blue-700">
                         <Calculator className="h-4 w-4" />
@@ -220,12 +230,7 @@ export default function RekberLanding() {
                     </CardContent>
                   </Card>
                 )}
-
-              <Link href='/formrekber'>
-                <Button className="bg-blue-500 hover:bg-blue-600 text-white h-14 text-base font-semibold rounded-lg w-full sm:w-[160px]">
-                  Mulai sekarang
-                </Button>
-              </Link>
+              </div>
             </div>
  
           </div>

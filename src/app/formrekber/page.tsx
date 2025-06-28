@@ -38,7 +38,7 @@ export default function RekberForm() {
   });
 
   const goToDetail = () => {
-    router.push('/dashboard?tab=detail-transaksi');
+    router.push('/dashboard/transactions/EXP');
   };
 
   return (
