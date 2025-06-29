@@ -40,33 +40,43 @@ export default function Navbar() {
   return (
     <nav className='bg-white/95 backdrop-blur-sm border-b border-gray-100 px-6 py-4 sticky top-0 z-50'>
       <div className='max-w-7xl mx-auto flex items-center justify-between'>
-        {/* Logo & Desktop Menu */}
-        <div className='flex items-center space-x-8'>
-          <LogoRekber />
-          <div className='hidden md:flex items-center space-x-8'>
-            <Link
-              href='/'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              Home
-            </Link>
-            <Link
-              href='/about'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              About
-            </Link>
-            <Link
-              href='/contact'
-              className='text-gray-700 hover:text-blue-600 font-medium transition-colors'
-            >
-              Contact
-            </Link>
+        <div className="flex items-center justify-between w-full">
+            {/* Logo kiri */}
+            <div className="flex items-center">
+              <LogoRekber />
+            </div>
+
+            {/* Menu kanan (hanya tampil di md ke atas) */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link
+                href="/"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                Home
+              </Link>
+              <Link
+                href="/fee"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                Fee
+              </Link>
+              <Link
+                href="/about"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                Contact
+              </Link>
+            </div>
           </div>
-        </div>
 
         {/* Desktop Auth Buttons */}
-        <div className='hidden md:flex items-center space-x-4'>
+        <div className='hidden md:flex items-center space-x-4 ml-[20px]'>
           {session ? (
             // User sudah login - tampilkan Dashboard dan Logout
             <div className='flex items-center space-x-4'>
@@ -133,7 +143,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.2 }}
-            className='md:hidden absolute left-0 right-0 top-full z-50 bg-white rounded-xl shadow-lg px-6 py-4 space-y-2'
+            className='md:hidden absolute left-0 right-0 top-full z-50 bg-white rounded-xl shadow-lg px-6 py-4 space-y-2 text-right'
           >
             <Link
               href='/'
@@ -142,6 +152,13 @@ export default function Navbar() {
             >
               Home
             </Link>
+              <Link
+                href="/fee"
+                className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'
+                onClick={() => setOpen(false)}
+              >
+                Fee
+              </Link>
             <Link
               href='/about'
               className='block py-2 text-gray-800 hover:text-blue-600 transition-colors'

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { User, Car, Smartphone, Calculator,TrendingUp } from "lucide-react"
+import { User, Car, Smartphone, Calculator } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from 'next/link';
 import { Separator } from "@/components/ui/separator"
@@ -53,7 +53,7 @@ export default function RekberLanding() {
       calculatedFee = inputAmount * 0.005
     }
     window.scrollTo({
-      top: 400,
+      top: 200,
       behavior: 'smooth',
     })
     // Minimum fee adalah 10.000
@@ -214,19 +214,7 @@ export default function RekberLanding() {
                           <span className="font-bold text-blue-700">{formatCurrency(totalAmount)}</span>
                         </div>
                       </div>
-
-                      {/* Fee Info */}
-                      <div className="mt-3 p-3 bg-white rounded-lg border border-blue-200">
-                        <div className="flex items-start space-x-2">
-                          <TrendingUp className="h-4 w-4 text-blue-500 mt-0.5" />
-                          <div className="text-xs text-gray-600">
-                            <p className="font-medium text-blue-600 mb-1">Informasi Fee:</p>
-                            <p>• Transaksi dibawah Rp 100.000.000 = 1%</p>
-                            <p>• Transaksi diatas Rp 100.000.000 = 0.5%</p>
-                            <p>• Fee minimum adalah Rp 10.000</p>
-                          </div>
-                        </div>
-                      </div>
+ 
                     </CardContent>
                   </Card>
                 )}

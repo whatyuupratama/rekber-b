@@ -11,7 +11,7 @@ export default function Footer() {
             <div className='mb-6'>
               <Link href='/'>
                 <Image
-                  src='/images/logo 1.png'
+                  src='/images/Logo 1.png'
                   alt='Logo'
                   width={180}
                   height={0}

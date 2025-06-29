@@ -180,7 +180,7 @@ export default function TransactionInterface() {
     <div className="min-h-screen bg-gray-50"> 
       <div className="flex flex-col md:flex-row">
         {/* Main Content - Transaction Details (2/3 width) */}
-        <div className="flex-1 p-6 md:flex-[2] pr-0">
+        <div className="flex-1 p-6 md:flex-[2]">
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
