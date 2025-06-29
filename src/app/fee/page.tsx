@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import Link from 'next/link';
 import { Badge } from "@/components/ui/badge"
 import NavBar from '../components/slicings/navbar';
 import Footer from '../components/slicings/footer';
@@ -82,7 +83,7 @@ export default function RekberFeePage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Informasi Biaya Transaksi</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transparansi penuh untuk setiap transaksi. Ketahui biaya yang akan dikenakan sebelum memulai transaksi Anda.
+            Fee lebih murah daripada marketplace! Ketahui biaya yang akan dikenakan sebelum memulai transaksi Anda.
           </p>
         </div>
 
@@ -308,9 +309,11 @@ export default function RekberFeePage() {
         <div className="text-center mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Siap Memulai Transaksi Aman?</h2>
           <p className="text-gray-600 mb-6">Mulai transaksi Anda sekarang dengan fee yang transparan dan kompetitif</p>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
-            Mulai Transaksi Sekarang
-          </Button>
+            <Link href="/">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
+                    Mulai Transaksi Sekarang
+                </Button>
+            </Link>
         </div>
       </div>
       <Footer />

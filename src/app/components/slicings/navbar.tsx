@@ -173,12 +173,11 @@ export default function Navbar() {
             >
               Contact
             </Link>
-
             {session ? (
               // Mobile menu untuk user yang sudah login
-              <>
-                <div className='py-2 text-gray-600 text-sm border-t border-gray-200 mt-2 pt-4'>
-                  <div className='flex items-center space-x-2'>
+              <> 
+                <div className='py-2 text-gray-600 text-sm border-t border-gray-200 mt-2 pt-4 text-right'>
+                  <div className='flex justify-end items-center space-x-2'>
                     <FiUser className='w-4 h-4' />
                     <span>{getDisplayName(session)}</span>
                   </div>
@@ -195,13 +194,13 @@ export default function Navbar() {
                     setOpen(false);
                     signOut({ callbackUrl: '/' });
                   }}
-                  className='block w-full text-left py-2 text-red-600 hover:text-red-700 transition-colors'
+                  className='block w-full text-right py-2 text-red-600 hover:text-red-700 transition-colors'
                 >
-                  <div className='flex items-center space-x-2'>
+                  <div className='flex justify-end items-center space-x-2'>
                     <FiLogOut className='w-4 h-4' />
                     <span>Logout</span>
                   </div>
-                </button>
+                </button> 
               </>
             ) : (
               <>

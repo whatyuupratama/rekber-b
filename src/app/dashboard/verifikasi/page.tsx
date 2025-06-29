@@ -2,7 +2,7 @@
 
 import type React from 'react';
 import { useState } from 'react';
-import { Info, User, Camera } from 'lucide-react';
+import { Info, User, Camera, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -121,7 +121,7 @@ export default function VerificationForm() {
           <CardHeader className='pb-8'>
             <div className='flex items-center space-x-3 mb-4'>
               <div className='w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center'>
-                <Info className='w-5 h-5 text-blue-600' />
+                <FileText className='w-5 h-5 text-blue-600' />
               </div>
               <CardTitle className='text-2xl font-bold text-slate-800'>
                 Formulir Verifikasi
