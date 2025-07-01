@@ -43,13 +43,11 @@ export default function RekberLanding() {
     if (inputAmount <= 0) return 0
 
     let calculatedFee = 0
-    const hundredMillion = 10000000 // 100 juta
+    const hundredMillion = 100000000 // 100 juta
 
-    if (inputAmount < hundredMillion) {
-      // Dibawah 100 juta = 1%
+    if (inputAmount <= hundredMillion) {
       calculatedFee = inputAmount * 0.01
     } else {
-      // Lebih dari 100 juta = 0.5%
       calculatedFee = inputAmount * 0.005
     }
     window.scrollTo({
@@ -81,7 +79,7 @@ export default function RekberLanding() {
     const numericValue = value.replace(/\D/g, "")
     setAmount(numericValue)
 
-    const parsedAmount = Number.parseInt(numericValue) || 0
+    const parsedAmount = Number.parseInt(numericValue) || 100
     const calculatedFee = calculateFee(parsedAmount)
     setFee(calculatedFee)
     setTotalAmount(parsedAmount + calculatedFee)
@@ -151,7 +149,8 @@ export default function RekberLanding() {
                     placeholder="1.000.000" 
                     value={formatNumber(amount)}
                     onChange={(e) => handleAmountChange(e.target.value)}
-                    className="bg-white text-gray-800 border border-gray-300 rounded-r-none h-14 text-base pl-16 w-full"
+                    className={`bg-white border border-gray-300 rounded-r-none h-14 text-base pl-12 w-full 
+                      ${Number(amount.replace(/\D/g, '')) === 0 ? 'text-gray-400' : 'text-gray-800'}`}
                   />
                   <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 font-medium text-base">
                     Rp
@@ -202,7 +201,7 @@ export default function RekberLanding() {
 
                         <div className="flex justify-between">
                           <span className="text-gray-600">
-                            Fee ({Number.parseInt(amount) < 100000000 ? "1%" : "0.5%"}, min. Rp 10.000):
+                            Fee ({Number.parseInt(amount) <= 100000000 ? "1%" : "0.5%"}, min. Rp 10.000):
                           </span>
                           <span className="font-semibold text-orange-600">{formatCurrency(fee)}</span>
                         </div>

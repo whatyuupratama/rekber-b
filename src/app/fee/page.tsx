@@ -29,7 +29,7 @@ export default function RekberFeePage() {
     let fee = 0
     const hundredMillion = 100000000
 
-    if (amount < hundredMillion) {
+    if (amount <= hundredMillion) {
       fee = amount * 0.01 // 1%
     } else {
       fee = amount * 0.005 // 0.5%
@@ -151,14 +151,15 @@ export default function RekberFeePage() {
             <div className="max-w-md mx-auto">
               <label className="block text-sm font-medium text-gray-700 mb-2">Masukkan Jumlah Transaksi</label>
               <div className="flex border-2  rounded-lg overflow-hidden focus-within:border-blue-500">
-                <div className="flex items-center px-4 bg-blue-50 border-r ">
+                <div className="flex items-center px-2 bg-blue-50 border-r ">
                   <span className="text-blue-600 font-semibold">Rp</span>
                 </div>
                 <Input
                   value={formatNumber(calculatorAmount)}
                   onChange={(e) => handleCalculatorChange(e.target.value)}
                   placeholder="0"
-                  className="border-0 focus-visible:ring-0 text-lg font-semibold flex-1 text-center"
+                  className={`border-0 focus-visible:ring-0 text-lg font-semibold flex-1
+                    ${Number(calculatorAmount.replace(/\D/g, '')) === 0 ? 'text-gray-400' : 'text-gray-800'}`}
                 />
               </div>
             </div>
@@ -175,7 +176,7 @@ export default function RekberFeePage() {
 
                       <div className="flex justify-between items-center">
                         <span className="text-gray-700">
-                          Fee ({Number.parseInt(calculatorAmount) < 100000000 ? "1%" : "0.5%"}):
+                          Fee ({Number.parseInt(calculatorAmount) <= 100000000 ? "1%" : "0.5%"}):
                         </span>
                         <span className="font-bold text-lg text-orange-600">{formatCurrency(calculatedFee)}</span>
                       </div>
