@@ -31,7 +31,7 @@ export default function Navbar() {
       <nav className='bg-white/95 backdrop-blur-sm border-b border-gray-100 px-6 py-4 sticky top-0 z-50'>
         <div className='max-w-7xl mx-auto flex items-center justify-between'>
           <LogoRekber />
-          <div className='text-gray-500'>Loading...</div>
+          <div className='text-gray-500'></div>
         </div>
       </nav>
     );
@@ -143,7 +143,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.2 }}
-            className='md:hidden absolute left-0 right-0 top-full z-50 bg-white rounded-xl shadow-lg px-6 py-4 space-y-2 text-right'
+            className='md:hidden absolute left-0 right-0 top-full z-50 bg-white rounded-xl shadow-lg px-6 py-4 space-y-2'
           >
             <Link
               href='/'
@@ -176,8 +176,8 @@ export default function Navbar() {
             {session ? (
               // Mobile menu untuk user yang sudah login
               <> 
-                <div className='py-2 text-gray-600 text-sm border-t border-gray-200 mt-2 pt-4 text-right'>
-                  <div className='flex justify-end items-center space-x-2'>
+                <div className='py-2 text-gray-600 text-sm border-t border-gray-200 mt-2 pt-4'>
+                  <div className='flex  items-center space-x-2'>
                     <FiUser className='w-4 h-4' />
                     <span>{getDisplayName(session)}</span>
                   </div>
@@ -194,9 +194,9 @@ export default function Navbar() {
                     setOpen(false);
                     signOut({ callbackUrl: '/' });
                   }}
-                  className='block w-full text-right py-2 text-red-600 hover:text-red-700 transition-colors'
+                  className='block w-full py-2 text-red-600 hover:text-red-700 transition-colors'
                 >
-                  <div className='flex justify-end items-center space-x-2'>
+                  <div className='flex items-center space-x-2'>
                     <FiLogOut className='w-4 h-4' />
                     <span>Logout</span>
                   </div>

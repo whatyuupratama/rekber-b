@@ -18,27 +18,7 @@ import {
 } from 'lucide-react';
 
 export default function DashboardPage() {
-  const stats = [
-    {
-      title: 'Saldo',
-      value: 'Rp.0.00',
-      icon: <Wallet className='w-5 h-5' />,
-      color: 'bg-blue-50 border-blue-200',
-    },
-    {
-      title: 'Deposit Dalam Antrian',
-      value: '0',
-      icon: <Clock className='w-5 h-5' />,
-      color: 'bg-blue-50 border-blue-200',
-      hasViewAll: true,
-    },
-    {
-      title: 'Penarikan tertunda',
-      value: '0',
-      icon: <ArrowDown className='w-5 h-5' />,
-      color: 'bg-blue-50 border-blue-200',
-      hasViewAll: true,
-    },
+  const stats = [  
     {
       title: 'Total Rekber anda',
       value: '1',
@@ -66,14 +46,7 @@ export default function DashboardPage() {
       icon: <CheckCircle className='w-5 h-5' />,
       color: 'bg-blue-50 border-blue-200',
       hasViewAll: true,
-    },
-    {
-      title: 'Disengketakan',
-      value: '0',
-      icon: <AlertTriangle className='w-5 h-5' />,
-      color: 'bg-blue-50 border-blue-200',
-      hasViewAll: true,
-    },
+    }, 
     {
       title: 'Dibatalkan',
       value: '0',
